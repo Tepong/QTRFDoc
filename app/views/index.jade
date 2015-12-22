@@ -1,0 +1,31 @@
+html
+	head
+		title= title
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+		script(src="js/jquery.js")
+		script(src="js/bootstrap.js")
+	body
+		div(class="container")
+			h2 
+				FONT(COLOR=blue) Project Name #{username}
+			button(type="button", class="btn btn-info", style="width:150px;height:50px", data-toggle="collapse", data-target="#SUPERSCREEN") SUPERSCREEN
+			div(id="SUPERSCREEN",class="collapse")
+				a(href="/insertTextBox") InsertTextbox
+				br
+				a(href="/OpenBrowser") OpenBrowser
+				br
+				a(href="/PressButton") PressButton
+				br
+				a(href="/PressLink") PressLink
+				br
+				a(href="/PressTabMenu") PressTabMenu
+			br
+			button(type="button", class="btn btn-info", style="width:150px;height:50px", data-toggle="collapse", data-target="#USMP") USMP
+			div(id="USMP",class="collapse")
+				a(href="/PressButton") PressButton
+				br
+				a(href="/PressLink") PressLink
+				br
+			br
+			a(href="/editFunction") Edit function

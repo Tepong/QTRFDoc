@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    title Edit function Page
+    link(rel='stylesheet', href='css/AddEditPCss.css')
+    script(type='text/javascript', src='js/AddDelParam.js')
+  body
+    .MaxBoderwidth Edit Function Page
+    br
+    form(method='post')
+      table#tb1
+        //
+          <tr><td>Project Name</td><td>
+          <select>
+          <option>Super Screen</option>
+          <option>USMP</option>
+          </select>
+          </td></tr>
+        tr
+          td Function Name
+          td
+            input(type='text', size='80%', name='fnName', value='#{projectname}') 
+        tr
+          td Function Description
+          td
+            input(type='text', size='80%', name='fnDes')
+      br
+      input(type='button', value='Add Parameter', onclick="addRow('tb2')")
+      input(type='button', value='Delete Row', onclick="deleteRow('tb2')")
+      table#tb2
+        tr
+          th Delete
+          th Parameter Name
+          th Description
+          th Require Field
+          th Default Value
+        tr
+          td
+            input(type='checkbox', name='chk')
+          td
+            input#ParamName(type='text', name='ParmName')
+          td
+            input#ParamDesc(type='text', name='ParmDesc')
+          td
+            input(type='checkbox', name='ReqName')
+            | Yes
+          td
+            input#DefaValue(type='text', name='DefValue')
+      br
+      table#tb3
+        tr
+          td
+            input(type='Submit', value='Save', size='50%')
+          td
+            input(type='button', value='Cancel')
+      br
