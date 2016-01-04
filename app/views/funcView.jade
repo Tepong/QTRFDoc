@@ -1,0 +1,31 @@
+html
+	head
+		title= funcName
+	body
+		each fn in datatoview
+			case fn.projname
+				when "SUPERSCREEN"
+					case  fn.funcname
+						when funcName
+							p Function : #{fn.funcname}
+							p Descriptions : #{fn.funcdesc}
+							table(border="1", style="width:50%")
+								tr
+									td
+										center Parameter
+									td
+										center Description
+									td
+										center Require
+									td
+										center Default Value 
+								each param in fn.params
+									tr
+										td
+											center #{param.paramname}
+										td
+											center #{param.paramdesc}
+										td
+											center #{param.paramrequire}
+										td
+											center #{param.paramdefaultvalue} 
