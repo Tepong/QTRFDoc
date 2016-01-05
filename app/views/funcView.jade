@@ -32,7 +32,7 @@ html
                           #cssmenu
                             ul
                               li
-                                a(href='../index1')
+                                a(href='../')
                                   span HOME
                               li.active.has-sub
                                 a(href='#')
@@ -77,21 +77,7 @@ html
                                               case fn.funcgroup
                                                 when "UTILITY"
                                                   li(id='UtilityMenu_'+fn.funcname)
-                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-                                  // Group Function USMP
-                                  li.has-sub
-                                    a(href='#')
-                                      span USMP
-                                    ul
-                                      li
-                                        a(href='#')
-                                          span ACTION
-                                      li
-                                        a(href='#')
-                                          span VERIFY
-                                      li
-                                        a(href='#')
-                                          span UTILITY
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
                               li
                                 a(href='#')
                                   span About
