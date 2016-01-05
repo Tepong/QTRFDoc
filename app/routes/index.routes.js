@@ -4,6 +4,4 @@ module.exports = function(app){
 	app.get('/InsertTextbox', index.insertTextBoxrender);
 	app.get('/OpenBrowser', index.OpenBrowserrender);
 	app.get('/addFunction', index.addFunctionrender);
-	app.get('/peng', index.peng);
-	app.get('/MooTest',index.MooTest);
 };

@@ -1,4 +1,19 @@
-h1{color:#abc}h2{color:#abc}h3{color:#abc}
+    table {
+    width:80%;
+    }
+    table tr:nth-child(even) {
+    background-color: #eee;
+    }
+    table tr:nth-child(odd) {
+    background-color:#fff;
+    }
+    table th {
+    background-color: green;
+    color: white;
+    }
+
+
+    h1{color:#abc}h2{color:#abc}h3{color:#abc}
  nav ul {
         box-shadow: 0px 0px 0px rgba(0,0,0,0.15);
         padding: 0 0px;

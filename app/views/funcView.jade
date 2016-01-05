@@ -1,31 +1,163 @@
 html
-	head
-		title= funcName
-	body
-		each fn in datatoview
-			case fn.projname
-				when "SUPERSCREEN"
-					case  fn.funcname
-						when funcName
-							p Function : #{fn.funcname}
-							p Descriptions : #{fn.funcdesc}
-							table(border="1", style="width:50%")
-								tr
-									td
-										center Parameter
-									td
-										center Description
-									td
-										center Require
-									td
-										center Default Value 
-								each param in fn.params
-									tr
-										td
-											center #{param.paramname}
-										td
-											center #{param.paramdesc}
-										td
-											center #{param.paramrequire}
-										td
-											center #{param.paramdefaultvalue} 
+  head
+    // menu
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='../css/index1.css', rel='stylesheet')
+    script(src='../js/jquery.js', type='text/javascript')
+    script(src='script.js')
+    title :: Automate Document ::
+  body        
+    form(name='form1', method='post', action='')
+      table(width='1000', align='center')
+        tr
+          td(colspan='2')
+            div(align='center')
+              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')
+        // Row #2 .... Body+TaMenu        
+        tr
+          td(width='1000', bgcolor='#FFFFFF')
+            div(align='center')
+              // Row #2.1 .... TaMenu
+              table(width='800', border='0', align='center')
+                // Table Tab Menu
+                tr
+                  td
+                    // Table Tab Menu
+                    table(border='0', align='center', width='1000')
+                      tr
+                        td(align='center')
+                          #cssmenu
+                            ul
+                              li
+                                a(href='../index1')
+                                  span HOME
+                              li.active.has-sub
+                                a(href='#')
+                                  span PROJECT
+                                // Project Name
+                                ul
+                                  li.has-sub
+                                    a#SUPERSCREEN(href='#')
+                                      span SUPERSCREEN
+                                    // Group Function SuperScreen
+                                    ul
+                                      li.has-sub
+                                        a(href='#')
+                                          span ACTION
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "ACTION"
+                                                  li(id='ActionMenu_'+fn.funcname)
+                                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                      li.has-sub
+                                        a(href='#')
+                                          span VERIFY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "VERIFY"
+                                                  li(id='VerifyMenu_'+fn.funcname)
+                                                  a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}          
+                                  
+                                      li.has-sub
+                                        a(href='#')
+                                          span UTILITY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "UTILITY"
+                                                  li(id='UtilityMenu_'+fn.funcname)
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                  // Group Function USMP
+                                  li.has-sub
+                                    a(href='#')
+                                      span USMP
+                                    ul
+                                      li
+                                        a(href='#')
+                                          span ACTION
+                                      li
+                                        a(href='#')
+                                          span VERIFY
+                                      li
+                                        a(href='#')
+                                          span UTILITY
+                              li
+                                a(href='#')
+                                  span About
+                              li.last
+                                a(href='#')
+                                  span Contact
+              // Row #2.2 .... Body
+              table(border='0', align='center', width='1000')
+                tr
+                  td(colspan='4')
+                    if statusTag == "True"
+                      font(size='5', color='red')
+                        center#Status Status Completed
+                      br
+                table(border='0', align='left', width='1000')
+                  tr
+                    each fn in datatoview
+                      case fn.projname
+                        when "SUPERSCREEN"
+                          case  fn.funcname
+                            when funcName
+                              tr
+                                td(width= '150')
+                                  font(size='5') Function :
+                                td
+                                  font(size='4') #{fn.funcname}
+                                  br
+                              tr
+                                td
+                                  font(size='5') Descriptions :
+                                td
+                                  font(size='4') #{fn.funcdesc}
+                table(border='1', align='center', width='1000')
+                  tr
+                    td
+                      center Parameter
+                    td
+                      center Description
+                    td
+                      center Require Field
+                    td
+                      center Default Value
+                  tr
+                    each fn in datatoview
+                      case fn.projname
+                        when "SUPERSCREEN"
+                          case  fn.funcname
+                            when funcName
+                             each param in fn.params 
+                              tr
+                                td
+                                  font(size='2')  #{param.paramname}
+                                td
+                                  #{param.paramdesc}
+                                td
+                                  #{param.paramrequire}
+                                td
+                                  #{param.paramdefaultvalue}
+                tr
+                    td(colspan='4')
+                      center
+                        button(onclick="window.open('EditFunction.html')") Edit
+                        button(onclick="window.open('DeleteFunction.html')") Delete
+      // #FOOTER
+      tr
+        td(colspan='2')
+          div(align='center')
+            center
+              img(src='../images/footer.jpg', width='1010', height='100')

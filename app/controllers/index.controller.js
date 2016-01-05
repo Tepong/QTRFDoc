@@ -1,10 +1,24 @@
-exports.render = function(req, res){
-	res.render('index',{
-		title: 'QTRF Document',
-		username: 'Pong'
-	});
-};
+var Func = require('../../node_modules/mongoose').model('Func');
 
+exports.render = function(req, res){
+	Func.find({"projname":"SUPERSCREEN"},function(err,data){
+		if(err){
+			return next(err);
+		}else{
+			// res.json(data);
+			// res.render('test',{datatoview:data.toJSON()});
+			// res.render('test',{datatoview:data});
+			res.render('index',{datatoview:data});
+		}
+	});	
+
+};
+// exports.render = function(req, res){
+// 	res.render('index',{
+// 		title: 'QTRF Document',
+// 		username: 'Pong'
+// 	});
+// };
 
 exports.insertTextBoxrender = function(req, res){
 	res.render('insertTextBox',{
@@ -46,19 +60,6 @@ exports.addFunc = function(req, res, next){
 	});
 };
 
-exports.peng = function(req, res, next){
-	res.render('peng',{
-		title: 'QTRF Document',
-		username: 'Pong'
-	});
-};
-
-exports.MooTest = function(req, res, next){
-	res.render('MooTest',{
-		title: 'QTRF Document',
-		username: 'Pong'
-	});
-};
 
 var SuperScreen = {
 	"Function":[

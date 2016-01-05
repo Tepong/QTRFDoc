@@ -1,57 +1,140 @@
-//peng
-doctype html
 html
-  head
-    title Edit function Page
-    link(rel='stylesheet', href='css/AddEditPCss.css')
-    script(type='text/javascript', src='js/AddDelParam.js')
-  body
-    .MaxBoderwidth Edit Function Page
-    br
-    form(method='post')
-      table#tb1
-        //
-          <tr><td>Project Name</td><td>
-          <select>
-          <option>Super Screen</option>
-          <option>USMP</option>
-          </select>
-          </td></tr>
-        tr
-          td Function Name
-          td
-            input(type='text', size='80%', name='fnName', value='#{projectname}') 
-        tr
-          td Function Description
-          td
-            input(type='text', size='80%', name='fnDes')
-      br
-      input(type='button', value='Add Parameter', onclick="addRow('tb2')")
-      input(type='button', value='Delete Row', onclick="deleteRow('tb2')")
-      table#tb2
-        tr
-          th Delete
-          th Parameter Name
-          th Description
-          th Require Field
-          th Default Value
-        tr
-          td
-            input(type='checkbox', name='chk')
-          td
-            input#ParamName(type='text', name='ParmName')
-          td
-            input#ParamDesc(type='text', name='ParmDesc')
-          td
-            input(type='checkbox', name='ReqName')
-            | Yes
-          td
-            input#DefaValue(type='text', name='DefValue')
-      br
-      table#tb3
-        tr
-          td
-            input(type='Submit', value='Save', size='50%')
-          td
-            input(type='button', value='Cancel')
-      br
+	head
+		meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+		title :: Automate Document ::
+		link(href='../../../css/main.css', rel='stylesheet')
+		link(href='../../../css/editFunction.css', rel='stylesheet')
+		script(type='text/javascript', src='../../../js/AddDelParam.js')
+	body
+		form#IndexForm(name='form1', method='POST', action='/FnView/#{funcName}/')
+			table#IndexTable(width='1000', border='0', align='center')
+				tr#HeaderPart
+					td(colspan='2')
+						div(align='center')
+							img#HeaderImg(src='../../../images/banner.jpg', width='1000', height='250', bgcolor='#FFFFFF')
+				tr#BodyPart
+					td(width='1000', height='800', bgcolor='#FFFFFF')
+						div(align='center')
+							table#Menubar(style='width=100%', border='0')
+								tr(width='500')
+									td(align='center')
+										nav
+											ul#MainMenu
+												li#HomeMenu
+													a#HomeMenuLink(href='#') HOME
+												li#ProjectListMenu
+													a#ProjectListMenuLink(href='#') PROJECT
+													ul#ProjectMenu
+														li#ProjectNameMenu
+															a#ProjectNameMenuLink(href='#') SUPERSCREEN
+															ul#ActionMenu
+																li#ActionName
+																	a#ActionNameLink(href='#') ACTION
+																	ul#ActionNameList
+																		each fn in datatoview
+																			case fn.projname
+																				when "SUPERSCREEN"
+																					case fn.funcgroup
+																						when "ACTION"
+																							li(id='ActionMenu_'+fn.funcname)
+																								a(id='ActionMenuLink_'+fn.funcname)(href='FnView/#{fn.funcname}') #{fn.funcname}																		 
+																li#VerifyName
+																	a#VerifyNameLink(href='#') VERIFY
+																	ul#VerifyNameList
+																		each fn in datatoview
+																			case fn.projname
+																				when "SUPERSCREEN"
+																					case fn.funcgroup
+																						when "VERIFY"
+																							li(id='VerifyMenu_'+fn.funcname)
+																								a(id='VerifyMenuLink_'+fn.funcname)(href='FnView/#{fn.funcname}') #{fn.funcname} 
+																li#UtilityName
+																	a#UtilityNameLink(href='#') UTILITY
+																	ul#UtilityNameList
+																		each fn in datatoview
+																			case fn.projname
+																				when "SUPERSCREEN"
+																					case fn.funcgroup
+																						when "UTILITY"
+																							li(id='UtilityMenu_'+fn.funcname)
+																								a(id='UtilityMenuLink_'+fn.funcname)(href='FnView/#{fn.funcname}') #{fn.funcname}	 
+														
+												li#ManageListMenu
+													a#ManageListMenuLink(href='#') MANAGE FUNCTION
+													ul#ManageMenu
+														li#ManageMenu_ADDFUNCTION
+															a#ManageMenuLink_ADDFUNCTION(href='AddPage.html') ADD FUNCTION
+														li#ManageMenu_DELETEFUNCTION
+															a#ManageMenuLink_DELETEFUNCTION(href='#') DELETE FUNCTION
+														li#ManageMenu_EDITFUNCTION
+															a#ManageMenuLink_EDITFUNCTION(href='#') EDIT FUNCTION
+												li#CONTACT
+													a#CONTACTLink(href='#') CONTACT
+				
+							.MaxBoderwidth Edit Function: #{funcName}
+							each fn in datatoview
+								case fn.projname
+									when "SUPERSCREEN"
+										case  fn.funcname
+											when funcName
+												br
+												form(method='POST' id='formFn')
+													table#tb1
+														tr
+															td Function Name
+															td
+																input(type='text', size='80%', name='fnName', id='txt_Name_'+funcName, value='#{funcName}') 
+														tr
+															td Function Description
+															td
+																input(type='text', size='80%', name='fnDes', value='#{fn.funcdesc}', id='txt_Description_'+funcName)
+													br
+													input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
+													input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
+													table#tb2
+														tr
+															th Delete
+															th Parameter Name
+															th Description
+															th Require Field
+															th Default Value
+															-var i=0
+															-var j=0
+															-var k=0
+														each param in fn.params 
+															tr#trParamList
+																td#tdCol_Delete
+																	input(id='chk_Delete'+param.paramname, type='checkbox', name='chk')
+																td#tdCol_ParameterName
+																	input(id='txt_Name_'+param.paramname, type='text', name='ParmName#{i=i+1}', value='#{param.paramname}')
+																td#tdCol_escription
+																	input(id='txt_Desc_'+param.paramname, type='text', name='ParmDesc#{j=j+1}', value='#{param.paramdesc}')
+
+																//- td
+																//- 	input(type='checkbox', name='ReqName', checked = true)
+																//- 	| Yes
+
+																td#tdCol_RequireField
+																	if param.paramrequire == "Y"
+																		input(id='chk_Require'+param.paramname, type='checkbox', name='ReqName#{k=k+1}', checked = true)
+																		| Yes
+																	else
+																		input(id='chk_Require'+param.paramname, type='checkbox', name='ReqName#{k=k+1}', checked = false)
+																		| Yes
+																
+																td#tdCol_DefaultValue
+																	input(id='txt_DefultVal_'+param.paramname, type='text', name='DefValue', value='#{param.paramdefaultvalue}')
+													br
+													table#tb3
+														tr
+															td#td_btnSave
+																input#btnSave(type='Submit', value='Save', size='50%')
+															td#td_btnCancel
+																input(type='button', value='Cancel', onclick("window.open('FnView/#{datatoview.funcname}')"))
+														
+				tr#FooterPart
+					td(colspan='2')
+						img#FooterImg(src='../../../images/footer.jpg', width='1000', height='100')
+
+
+

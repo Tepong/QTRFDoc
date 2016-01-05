@@ -1,6 +1,6 @@
 var Func = require('../../node_modules/mongoose').model('Func');
-var Param = require('../../node_modules/mongoose').model('Param');
-var Proj = require('../../node_modules/mongoose').model('Proj');
+// var Param = require('../../node_modules/mongoose').model('Param');
+// var Proj = require('../../node_modules/mongoose').model('Proj');
 
 exports.create = function(req, res, next){
 	var func = new Func({"funcname":"SuperScreen1","funcdesc":"SuperScreen1"});

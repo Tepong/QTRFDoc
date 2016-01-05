@@ -1,3 +1,94 @@
+nav ul {
+        box-shadow: 0px 0px 0px rgba(0,0,0,0.15);
+        padding: 0 0px;
+        border-radius: 10px;  
+        list-style: none;
+        position: relative;
+        display: inline-table;
+    }
+    nav ul:after {
+        content: ""; clear: both; display: block;
+    }
+    nav ul li {
+        position:static; 
+        float: left;
+        border:1px solid #fff
+    }
+    nav li ul {
+        display: none;
+
+        }
+    nav ul li a { display: block;
+            background: black;
+            padding: 10px 20px;
+            border-radius: 4px 4px 4px 4px;
+            text-decoration: none;
+            white-space: nowrap;
+            color: #fff;
+
+       }
+
+    nav ul li a:hover {
+        background: orange;
+
+    }
+   
+    nav li:hover li {
+        float: none;
+
+        }
+    nav li:hover a {
+        background: orange;
+
+        }
+
+    li:hover li a:hover {
+        background: #000;
+    }
+    #drop-nav li ul li {
+        border-top: 0px;
+    }
+
+   nav ul ul ul {
+    position: absolute;
+    left: 100%;
+    top:0;
+
+    }
+
+    nav ul ul {
+    display: none;
+    }
+    nav ul ul li {
+        float: none; 
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: relative;
+
+    }
+    nav ul ul li a {
+            padding: 15px 40px;
+            color: #fff;
+        } 
+    nav ul ul li a:hover {
+                background: orange;
+    }
+
+    nav ul li:hover > ul {
+        display: block;
+    }
+
+body {
+    background-image: url();
+    background-color: #999999;
+    }
+    table,tr,td{
+                    /*vertical-align: text-top;*/
+                    vertical-align: top;
+                }
+
+
+
 h1{color:#abc}h2{color:#abc}h3{color:#abc}
  nav ul {
         box-shadow: 0px 0px 0px rgba(0,0,0,0.15);
