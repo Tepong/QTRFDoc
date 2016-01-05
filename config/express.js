@@ -1,5 +1,7 @@
 var express = require('../node_modules/express');
 var morgan = require('../node_modules/morgan');
+var bodyParser = require('../node_modules/body-parser');
+
 // var compression = require('../node_modules/compression');
 // var bodyParser = require('../node_modules/body-parser');
 // var sass = require('../node_modules/node-sass-middleware');
@@ -13,13 +15,17 @@ var morgan = require('../node_modules/morgan');
 
 module.exports = function(){
 	var app = express();
+	
+ 	app.use(bodyParser());
+	app.use(bodyParser.json()); // support json encoded bodies
+	app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 	app.set('views', './app/views');
 	app.set('view engine', 'jade');
 
 	require('../app/routes/index.routes')(app);
-	require('../app/routes/func.routes')(app);
-	// require('../app/routes/test.routes')(app);
+	require('../app/routes/funcView.routes')(app);
+		
 	app.use(express.static('./public'));
 	return app;
 };
