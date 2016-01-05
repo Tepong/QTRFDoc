@@ -41,6 +41,23 @@ exports.FuncDetailUpdate = function(req, res){
 };
 
 
+exports.createProj = function(req, res, next){
+	//var proj = new Proj(req.proj);
+	//console.log(proj);
+	//proj.save(function(err){
+		// if(err){
+		// 	return next(err);
+		// }else{
+		// 	// res.json(proj);
+		// 	console.log('pass');
+		// }
+	//});
+	//res.redirect('/');
+	res.render('addFunction')
+};
+
+
+
 exports.UpdateData= function(req,res){
 
 var pjName="SUPERSCREEN";

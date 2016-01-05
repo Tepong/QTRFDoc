@@ -3,6 +3,9 @@ module.exports = function(app){
 	
 	app.get('/FnView/:funcName/', func.FuncDetailRender);
 	app.get('/FnView/FnEdit/:funcName/', func.FuncEdit);
+	//app.get('/addProj/:Project', func.createProj);
+	app.get('/addProj/', func.createProj);
+
 
 	//
 	app.post('/FnView/:funcName/', func.UpdateData);
