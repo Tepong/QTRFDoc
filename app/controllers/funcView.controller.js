@@ -56,6 +56,10 @@ exports.createProj = function(req, res, next){
 	res.render('addFunction')
 };
 
+exports.createFunc = function(req, res, next){
+	res.render('addFunction')
+};
+
 
 
 exports.UpdateData= function(req,res){

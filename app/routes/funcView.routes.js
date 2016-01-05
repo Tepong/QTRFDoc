@@ -5,6 +5,7 @@ module.exports = function(app){
 	app.get('/FnView/FnEdit/:funcName/', func.FuncEdit);
 	//app.get('/addProj/:Project', func.createProj);
 	app.get('/addProj/', func.createProj);
+	app.get('/addFunc/', func.createFunc);
 
 
 	//

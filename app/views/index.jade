@@ -49,9 +49,16 @@ html
                                   span PROJECT
                                 // Project Name
                                 ul
-                                  li
-                                    a#addProj(href='/addProj') 
-                                      span + Add Project...
+                                  li.has-sub
+                                    a#addMenu(href='#') 
+                                      span + Add...
+                                    ul 
+                                      li 
+                                        a#addProj(href='/addProj')
+                                          span + Add Project...
+                                      li
+                                        a#addFunction(href='/addFunc')
+                                          span + Add Function...
                                   li.has-sub
                                     a#SUPERSCREEN(href='#')
                                       span SUPERSCREEN
