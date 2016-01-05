@@ -135,6 +135,8 @@ html
                     td
                       center Default Value
                   tr
+                    -var name=datatoview.funcname
+                    #{name}
                     each fn in datatoview
                       case fn.projname
                         when "SUPERSCREEN"
@@ -153,7 +155,7 @@ html
                 tr
                     td(colspan='4')
                       center
-                        button(onclick="window.open('EditFunction.html')") Edit
+                        button(onclick="window.open('/FnView/FnEdit/#{funcName}')") Edit
                         button(onclick="window.open('DeleteFunction.html')") Delete
       // #FOOTER
       tr
