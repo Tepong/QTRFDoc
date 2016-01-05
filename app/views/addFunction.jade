@@ -1,55 +1,144 @@
-doctype html
 html
   head
-    title Add function Page
-    link(rel='stylesheet', href='css/AddEditPCss.css')
+    // menu
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='../css/index1.css', rel='stylesheet')
+    link(href='../css/AddEditPCSS.css', rel='stylesheet')
+    script(src='../js/jquery.js', type='text/javascript')
+    script(src='script.js')
     script(type='text/javascript', src='js/AddDelParam.js')
-  body
-    .MaxBoderwidth Add Function Page
-    br
-    form(method='post', action='Page2.htm')
-      table#tb1
+    title :: Automate Document ::
+  body        
+    form(name='form1', method='post', action='')
+      table(width='1000', align='center')
         tr
-          td Project Name
-          td
-            select
-              option Super Screen
-              option USMP
+          td(colspan='2')
+            div(align='center')
+              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')
+        // Row #2 .... Body+TaMenu        
         tr
-          td Function Name
-          td
-            input(type='text', size='80%', name='fnName')
-        tr
-          td Function Description
-          td
-            input(type='text', size='80%', name='fnDes')
-      br
-      input(type='button', value='Add Parameter', onclick="addRow('tb2')")
-      input(type='button', value='Delete Row', onclick="deleteRow('tb2')")
-      table#tb2
-        tr
-          th Delete
-          th Parameter Name
-          th Description
-          th Require Field
-          th Default Value
-        tr
-          td
-            input(type='checkbox', name='chk')
-          td
-            input#ParamName(type='text', name='ParmName')
-          td
-            input#ParamDesc(type='text', name='ParmDesc')
-          td
-            input(type='checkbox', name='ReqName')
-            | Yes
-          td
-            input#DefaValue(type='text', name='DefValue')
-      br
-      table#tb3
-        tr
-          td
-            input(type='Submit', value='Save', size='50%')
-          td
-            input(type='button', value='Cancel')
-      br
+          td(width='1000', bgcolor='#FFFFFF')
+            div(align='center')
+              // Row #2.1 .... TaMenu
+              table(width='800', border='0', align='center')
+                // Table Tab Menu
+                tr
+                  td
+                    // Table Tab Menu
+                    table(border='0', align='center', width='1000')
+                      tr
+                        td(align='center')
+                          #cssmenu
+                            ul
+                              li
+                                a(href='../')
+                                  span HOME
+                              li.active.has-sub
+                                a(href='#')
+                                  span PROJECT
+                                // Project Name
+                                ul
+                                  li.has-sub
+                                    a#SUPERSCREEN(href='#')
+                                      span SUPERSCREEN
+                                    // Group Function SuperScreen
+                                    ul
+                                      li.has-sub
+                                        a(href='#')
+                                          span ACTION
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "ACTION"
+                                                  li(id='ActionMenu_'+fn.funcname)
+                                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                      li.has-sub
+                                        a(href='#')
+                                          span VERIFY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "VERIFY"
+                                                  li(id='VerifyMenu_'+fn.funcname)
+                                                  a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}          
+                                  
+                                      li.has-sub
+                                        a(href='#')
+                                          span UTILITY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "UTILITY"
+                                                  li(id='UtilityMenu_'+fn.funcname)
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
+                              li
+                                a(href='#')
+                                  span About
+                              li.last
+                                a(href='#')
+                                  span Contact
+              // Row #2.2 .... Body
+              .MaxBoderwidth Add Function Page
+                br
+                form(method='post', action='Page2.htm')
+                  table#tb1
+                    tr
+                      td Project Name
+                      td
+                        select
+                          each pn in allProj
+                            option #{pn}              
+                    tr
+                      td Function Name
+                      td
+                        input(type='text', size='80%', name='fnName')
+                    tr
+                      td Function Description
+                      td
+                        input(type='text', size='80%', name='fnDes')
+                  br
+                  input(type='button', value='Add Parameter', onclick="addRow('tb2')")
+                  input(type='button', value='Delete Row', onclick="deleteRow('tb2')")
+                  table#tb2
+                    tr
+                      th Delete
+                      th Parameter Name
+                      th Description
+                      th Require Field
+                      th Default Value
+                    tr
+                      td
+                        input(type='checkbox', name='chk')
+                      td
+                        input#ParamName(type='text', name='ParmName')
+                      td
+                        input#ParamDesc(type='text', name='ParmDesc')
+                      td
+                        input(type='checkbox', name='ReqName')
+                        | Yes
+                      td
+                        input#DefaValue(type='text', name='DefValue')
+                  br
+                  table#tb3
+                    tr
+                      td
+                        input(type='Submit', value='Save', size='50%')
+                      td
+                        input(type='button', value='Cancel')
+                  br
+
+      // #FOOTER
+      tr
+        td(colspan='2')
+          div(align='center')
+            center
+              img(src='../images/footer.jpg', width='1010', height='100')

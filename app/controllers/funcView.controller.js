@@ -57,7 +57,19 @@ exports.createProj = function(req, res, next){
 };
 
 exports.createFunc = function(req, res, next){
-	res.render('addFunction')
+	Func.find().distinct('projname', function(err, data) {
+	    if(err){
+			return next(err);
+		}else{
+			Func.find({"projname":"SUPERSCREEN"},function(err,dataAll){
+				if(err){
+					return next(err);
+				}else{
+					res.render('addFunction',{datatoview:dataAll, allProj:data});				
+				}
+			});				
+		}
+	});	
 };
 
 
