@@ -19,7 +19,7 @@ exports.FuncEdit = function(req, res){
 		if(err){
 			return next(err);
 		}else{
-			// console.log(data);
+			console.log(data);
 			res.render('editFunction',{datatoview:data, funcName:req.params.funcName});
 		}
 	});	
