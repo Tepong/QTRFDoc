@@ -19,7 +19,7 @@ module.exports = function(){
 
 	require('../app/routes/index.routes')(app);
 	require('../app/routes/func.routes')(app);
-	require('../app/routes/test.routes')(app);
+	// require('../app/routes/test.routes')(app);
 	app.use(express.static('./public'));
 	return app;
 };

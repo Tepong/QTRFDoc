@@ -10,6 +10,6 @@ module.exports = function() {
 	require('../app/models/proj.model');
 	require('../app/models/func.model');
 	require('../app/models/param.model');
-	require('../app/models/test.model');
+	// require('../app/models/test.model');
 	return db;
 };
