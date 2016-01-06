@@ -1,0 +1,89 @@
+html
+  head
+    // menu
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='../css/index1.css', rel='stylesheet')
+    script(src='http://code.jquery.com/jquery-latest.min.js', type='text/javascript')
+    script(src='script.js')
+    title :: Automate Document ::
+  body
+    form(name='form1', method='post', action='index.html')
+      table(width='1000', align='center')
+        tr
+          td(colspan='2')
+            div(align='center')
+              img(src='../images/banner.jpg', width='1000', height='250', bgcolor='')
+        tr
+          td(width='1000', bgcolor='#FFFFFF')
+            div(align='center')
+              table(width='800', border='0', align='center')
+                tr
+                  td
+                    table(border='0', align='center', width='1000')
+                      tr
+                        td(align='center')
+                          #cssmenu
+                            ul
+                              li
+                                a(href='../')
+                                  span HOME
+                              li.active.has-sub
+                                a(href='#')
+                                  span PROJECT
+                                ul
+                                  li.has-sub
+                                    a#SUPERSCREEN(href='#')
+                                      span SUPERSCREEN
+                                    ul
+                                      li.has-sub
+                                        a(href='#')
+                                          span ACTION
+                                        ul
+                                          each fn in datatoview
+                                            case fn.projname
+                                              when "SUPERSCREEN"
+                                                case fn.funcgroup
+                                                  when "ACTION"
+                                                    li(id='ActionMenu_'+fn.funcname)
+                                                    a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                      li.has-sub
+                                        a(href='#')
+                                          span VERIFY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "VERIFY"
+                                                  li(id='VerifyMenu_'+fn.funcname)
+                                                  a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                      li.has-sub
+                                        a(href='#')
+                                          span UTILITY
+                                        ul
+                                          each fn in datatoview
+                                           case fn.projname
+                                            when "SUPERSCREEN"
+                                              case fn.funcgroup
+                                                when "UTILITY"
+                                                  li(id='UtilityMenu_'+fn.funcname)
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                              li
+                                a(href='#')
+                                  span About
+                              li.last
+                                a(href='#')
+                                  span Contact
+              // Row #2.2 .... Body
+              table(border='2', align='center', width='970', height='100')
+                tr
+                  td(colspan='4')
+                      font(size='5', color='red')
+                        center#Status Status Completed
+                      br
+        tr
+          td(colspan='2')
+            img(src='../images/footer.jpg', width='1000', height='100')

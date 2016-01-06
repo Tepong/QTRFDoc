@@ -7,5 +7,7 @@ module.exports = function(app){
 	app.get('/addProj/', func.createProj);
 	app.get('/addFunc/', func.createFunc);
 
-	app.post('/FnView/:funcName', func.UpdateData);
+	app.post('/FnView/:funcName/', func.UpdateData);
+
+	app.post('/ActionStatus/', func.ShowStatus);
 };

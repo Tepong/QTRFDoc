@@ -116,11 +116,12 @@ html
 															-var k=0
 															-var l=0
 															-var m=0
+															-var parm1
+															-var parm2
 															
 														each param in fn.params 
 															tr#trParamList
 																td#tdCol_Delete
-																	input(id='txt_Name_'+param.paramname, type='hidden', name='params[#{m=m+1}][_ID]', value='#{param.paramname+m}')
 																	input(id='chk_Delete'+param.paramname, type='checkbox', name='chk')
 																td#tdCol_ParameterName
 																	input(id='txt_Name_'+param.paramname, type='text', name='params[#{i=i+1}][paramname]', value='#{param.paramname}')
