@@ -1,10 +1,17 @@
 html
 	head
 		meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-		title :: Automate Document ::
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
 		link(href='../../../css/main.css', rel='stylesheet')
+		link(href='../../../css/index1.css', rel='stylesheet')
+		link(href='../../../css/AddEditPCSS.css', rel='stylesheet')
 		link(href='../../../css/editFunction.css', rel='stylesheet')
+		script(src='../../../js/jquery.js', type='text/javascript')
 		script(type='text/javascript', src='../../../js/AddDelParam.js')
+		//-script(type='text/javascript', src='js/AddDelParam.js')
+		title :: Automate Document ::
 	body
 		form#IndexForm(name='form1', method='POST', enctype='application/json' ,action='/FnView/#{funcName}/')
 			table#IndexTable(width='1000', border='0', align='center')

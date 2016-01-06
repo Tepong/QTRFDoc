@@ -49,7 +49,7 @@ function deleteRow(tableID) {
  
             for(var i=0; i<rowCount; i++) {
                 var row = table.rows[i];
-                var chkbox = row.cells[0].childNodes[0];
+                var chkbox = row.cells[0].childNodes[1];
                 if(null != chkbox && true == chkbox.checked) {
                     if(rowCount <= 2) {
                         alert("Cannot delete all the rows.");
