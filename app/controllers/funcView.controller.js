@@ -37,6 +37,28 @@ exports.FuncDetailUpdate = function(req, res){
 };
 
 
+exports.createProj = function(req, res, next){
+	res.render('addFunction')
+};
+
+exports.createFunc = function(req, res, next){
+	Func.find().distinct('projname', function(err, data) {
+	    if(err){
+			return next(err);
+		}else{
+			Func.find({"projname":"SUPERSCREEN"},function(err,dataAll){
+				if(err){
+					return next(err);
+				}else{
+					res.render('addFunction',{datatoview:dataAll, allProj:data});				
+				}
+			});				
+		}
+	});	
+};
+
+
+
 exports.UpdateData= function(req,res){
 	
 	var toUadate=req.body;
