@@ -12,7 +12,7 @@ html
     script(type='text/javascript', src='js/AddDelParam.js')
     title :: Automate Document ::
   body(bgcolor='#D8D8D8')    
-    form(name='form1', method='post', action='')
+    form(name='form1', method='post', action='/ActionStatus/')
       table(width='1000', align='center')
         tr
           td(colspan='2')
@@ -88,8 +88,9 @@ html
                                   span Contact
               // Row #2.2 .... Body
               .MaxBoderwidth Add Function Page
+              -var txtFuncName = ''
                 br
-                form(method='post', action='Page2.htm')
+                form(method='post', action='/yyyyyyy/')
                   table#tb1
                     tr
                       td Project Name
@@ -100,7 +101,7 @@ html
                     tr
                       td Function Name
                       td
-                        input(type='text', size='80%', name='fnName')
+                        input(type='text', size='80%', name='fnName', value='#{txtFuncName}')
                     tr
                       td Function Description
                       td
@@ -131,7 +132,7 @@ html
                   table#tb3
                     tr
                       td
-                        input(type='Submit', value='Save', size='50%')
+                        input(type='Submit', value='Save', size='50%', onClick="window.location.href='/#{txtFuncName}/ActionStatus'")
                       td
                         input(type='button', value='Reset', onClick="window.location.href=window.location.href")
                   br

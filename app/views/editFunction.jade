@@ -6,7 +6,7 @@ html
 		link(href='../../../css/editFunction.css', rel='stylesheet')
 		script(type='text/javascript', src='../../../js/AddDelParam.js')
 	body
-		form#IndexForm(name='form1', method='POST', action='/FnView/#{funcName}/')
+		form#IndexForm(name='form1', method='POST', enctype='application/json' ,action='/FnView/#{funcName}/')
 			table#IndexTable(width='1000', border='0', align='center')
 				tr#HeaderPart
 					td(colspan='2')
@@ -83,12 +83,18 @@ html
 														tr
 															td Function Name
 															td
-																input(type='text', size='80%', name='fnName', id='txt_Name_'+funcName, value='#{funcName}') 
+																input(type='text', size='80%', name='funcname', id='txt_Name_'+funcName, value='#{funcName}') 
 														tr
 															td Function Description
 															td
-																input(type='text', size='80%', name='fnDes', value='#{fn.funcdesc}', id='txt_Description_'+funcName)
+																input(type='text', size='80%', name='funcdesc', value='#{fn.funcdesc}', id='txt_Description_'+funcName)
+														tr
+															td Function Group
+															td
+																input(id='hiddenPj',type='Text',name='funcgroup',value='#{fn.funcgroup}')
 													br
+													input(id='hiddenPj',type='hidden',name='projname',value='SUPERSCREEN')
+													
 													input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
 													input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
 													table#tb2
@@ -101,29 +107,34 @@ html
 															-var i=0
 															-var j=0
 															-var k=0
+															-var l=0
+															-var m=0
+															
 														each param in fn.params 
 															tr#trParamList
 																td#tdCol_Delete
+																	input(id='txt_Name_'+param.paramname, type='hidden', name='params[#{m=m+1}][_ID]', value='#{param.paramname+m}')
 																	input(id='chk_Delete'+param.paramname, type='checkbox', name='chk')
 																td#tdCol_ParameterName
-																	input(id='txt_Name_'+param.paramname, type='text', name='ParmName#{i=i+1}', value='#{param.paramname}')
+																	input(id='txt_Name_'+param.paramname, type='text', name='params[#{i=i+1}][paramname]', value='#{param.paramname}')
 																td#tdCol_escription
-																	input(id='txt_Desc_'+param.paramname, type='text', name='ParmDesc#{j=j+1}', value='#{param.paramdesc}')
+																	input(id='txt_Desc_'+param.paramname, type='text', name='params[#{j=j+1}][paramdesc]', value='#{param.paramdesc}')
 
 																//- td
 																//- 	input(type='checkbox', name='ReqName', checked = true)
 																//- 	| Yes
 
 																td#tdCol_RequireField
-																	if param.paramrequire == "Y"
-																		input(id='chk_Require'+param.paramname, type='checkbox', name='ReqName#{k=k+1}', checked = true)
+																	if param.paramrequire == "On"
+																		input(id='chk_Require'+param.paramname, type='checkbox', name='params[#{k=k+1}][paramrequire]', checked = true)
 																		| Yes
 																	else
-																		input(id='chk_Require'+param.paramname, type='checkbox', name='ReqName#{k=k+1}', checked = false)
+																		input(id='chk_Require'+param.paramname, type='checkbox', name='params[#{k=k+1}][paramrequire]', checked = false)
 																		| Yes
+																		
 																
 																td#tdCol_DefaultValue
-																	input(id='txt_DefultVal_'+param.paramname, type='text', name='DefValue', value='#{param.paramdefaultvalue}')
+																	input(id='txt_DefultVal_'+param.paramname, type='text', name='params[#{l=l+1}][paramdefaultvalue]', value='#{param.paramdefaultvalue}')
 													br
 													table#tb3
 														tr
