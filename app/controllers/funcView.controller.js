@@ -72,7 +72,7 @@ exports.UpdateData= function(req,res){
    		if(err){
 		 	return next(err);
 		 }else{
-		 	thing.save(function(err,data){
+		 	thing.save(function(err){
 		   		if(err){
 				 	return next(err);
 				 }else{
@@ -80,10 +80,15 @@ exports.UpdateData= function(req,res){
 				 		if(err){
 						 	return next(err);
 						 }else{
-						 	res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
+						 	Func.find({"projname":"SUPERSCREEN"},function(err,data){
+								if(err){
+									return next(err);
+								}else{
+									res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
+								}
+							});	
 						 }
 				 	});
-
 				 }
 			});
 		 }
