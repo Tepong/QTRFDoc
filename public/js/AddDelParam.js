@@ -19,7 +19,7 @@ function addRow(tableID) {
                     case "text":
                             newcell.childNodes[0].value = "";
                              newcell.childNodes[0].id = "ParamName"+j;
-                             newcell.childNodes[0].name = "ParmName"+j;
+                             newcell.childNodes[0].name = "params["+j+"][paramname]";
                             break;
                     case "checkbox":
                             newcell.childNodes[0].checked = false;
