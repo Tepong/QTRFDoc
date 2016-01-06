@@ -10,4 +10,6 @@ module.exports = function(app){
 
 	//
 	app.post('/FnView/:funcName/', func.UpdateData);
+	//app.post('/:funcName/ActionStatus/', func.ShowStatus);
+	app.post('/ActionStatus/', func.ShowStatus);
 };

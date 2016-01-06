@@ -72,6 +72,17 @@ exports.createFunc = function(req, res, next){
 	});	
 };
 
+exports.ShowStatus = function(req, res, next){
+
+	Func.find({"projname":"SUPERSCREEN"},function(err,data){
+		if(err){
+			return next(err);
+		}else{
+			res.render('addStatus',{datatoview:data});
+		}
+	});	
+};
+
 
 
 exports.UpdateData= function(req,res){
