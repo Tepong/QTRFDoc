@@ -6,7 +6,6 @@ exports.FuncDetailRender = function(req, res){
 		if(err){
 			return next(err);
 		}else{
-			console.log(data);
 			res.render('funcView',{datatoview:data, funcName:req.params.funcName});
 		}
 	});	
@@ -19,7 +18,6 @@ exports.FuncEdit = function(req, res){
 		if(err){
 			return next(err);
 		}else{
-			console.log(data);
 			res.render('editFunction',{datatoview:data, funcName:req.params.funcName});
 		}
 	});	
@@ -27,13 +25,11 @@ exports.FuncEdit = function(req, res){
 };
 
 exports.FuncDetailUpdate = function(req, res){
-	// console.log(req.body);
-	// res.json(req.body);
+
 	Func.find({"projname":"SUPERSCREEN"},function(err,data){
 		if(err){
 			return next(err);
 		}else{
-			// console.log(data);
 			res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
 		}
 	});	
@@ -42,40 +38,32 @@ exports.FuncDetailUpdate = function(req, res){
 
 
 exports.UpdateData= function(req,res){
-
-var pjName="SUPERSCREEN";
-var Fname =req.body.fnName;
-var Fdes= req.body.fnDes;
-var Pname=req.body.ParmName;
-var ParD= req.body.ParmDesc;
-var reqf= req.body.ReqName;
-var DValue=req.body.DefValue;
-// console.log(data);
-			var conditions = { "funcname": req.params.funcName }
- 			var update = { "funcname":Fname , 
- 							"funcdesc":Fdes ,
- 							"paramname":Pname,
- 							"ParmDesc":ParD
- 						 }
-  			var options = { multi: false };
-			console.log(Fname+"  "+Fdes+"  "+Pname+"  "+ParD+"  "+reqf+"  "+ DValue);
-			console.log(req.body);
-Func.update(conditions,update,options,function(err,data){
-
-// Func.find({"projname":"SUPERSCREEN"},function(err,data){
-		if(err){
-			return next(err);
-		}else{
-			// FuncDetailUpdate();
-			res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
-		}
-	});	
+	
+	var toUadate=req.body;
+	var conditions = { "funcname": req.params.funcName }
+   	var options = { multi: false };
 
 
+   
+	var thing = new Func(toUadate);
+   	Func.findOne({"funcname": req.params.funcName},function(err,findBefore){
+   		if(err){
+		 	return next(err);
+		 }else{
+		 	thing.save(function(err,data){
+		   		if(err){
+				 	return next(err);
+				 }else{
+				 	Func.remove({"_id": findBefore._id}, function(err){
+				 		if(err){
+						 	return next(err);
+						 }else{
+						 	res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
+						 }
+				 	});
+
+				 }
+			});
+		 }
+   	});
 };
-
-// exports.getFuncName = function(req, res, next, funcName){	
-// 	console.log(funcName);
-// 	req.FuncName= funcName;
-// 	next();
-// };
