@@ -41,8 +41,7 @@ function addRow(tableID) {
                     newcell.childNodes[0].value="";
                 } else if (i==3) {
                     newcell.childNodes[0].id = "ParamReq"+rowCount;
-                    newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";
-                    newcell.childNodes[0].value="";
+                    newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";                    
                 } else if (i==4){
                     newcell.childNodes[0].id = "DefValue"+rowCount;
                     newcell.childNodes[0].name = "params["+rowCount+"][paramdefaultvalue]";

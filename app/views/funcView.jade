@@ -99,6 +99,8 @@ html
                                 a(href='#')
                                   span Contact
               // Row #2.2 .... Body
+
+            form(id="desForm", method="post", ACTION = "/ActionStatus/")
               table(border='0', align='center', width='1000')
                 tr
                   td(colspan='4')
@@ -158,14 +160,21 @@ html
                                 td
                                   font(size='2')  #{param.paramdesc}
                                 td
-                                  font(size='2')  #{param.paramrequire}
+                                  if param.paramrequire == "on"
+                                    font(size='2') Yes
+                                  else 
+                                    font(size='2') No
                                 td
                                   font(size='2')  #{param.paramdefaultvalue}
-                tr
-                    td(colspan='4')
-                      center
-                        button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
-                        button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
+                  tr
+                      td(colspan='4')
+                        center
+                          button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
+                          button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
+
+                          //- button(type = "button",onclick="fnOpenNormalDialog()") test
+                          //- input#btnOpenDialog(type='button', value='Open Confirm Dialog',onclick="fnOpenNormalDialog()")
+                          //- #dialog-confirm
       // #FOOTER
       tr
         td(colspan='2')
