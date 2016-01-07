@@ -1,6 +1,7 @@
 .MaxBoderwidth{
-        width: 100%;
-        /*text-align: center;*/
+        width: 94%;
+        text-align: center;
+        align:center;
         border-collapse: collapse;
         border: 1px solid #101010;
         font-family: "Times New Roman", Times, serif;
