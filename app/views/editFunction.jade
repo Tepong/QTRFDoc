@@ -50,41 +50,40 @@ html
 													li.has-sub
 														a#SUPERSCREEN(href='#')
 															span SUPERSCREEN
-												// Group Function SuperScreen
-												ul
-													li.has-sub
-														a(href='#')
-															span ACTION
 														ul
-															each fn in datatoview
-																case fn.projname
-																	when "SUPERSCREEN"
-																		case fn.funcgroup
-																			when "ACTION"
-																				li(id='ActionMenu_'+fn.funcname)
-																					a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-													li.has-sub
-														a(href='#')
-															span VERIFY
-														ul
-															each fn in datatoview
-																case fn.projname
-																	when "SUPERSCREEN"
-																		case fn.funcgroup
-																			when "VERIFY"
-																				li(id='VerifyMenu_'+fn.funcname)
-																				a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}          
-													li.has-sub
-														a(href='#')
-															span UTILITY
-														ul
-															each fn in datatoview
-																case fn.projname
-																	when "SUPERSCREEN"
-																		case fn.funcgroup
-																			when "UTILITY"
-																				li(id='UtilityMenu_'+fn.funcname)
-																					a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
+															li.has-sub
+																a(href='#')
+																	span ACTION
+																ul
+																	each fn in datatoview
+																		case fn.projname
+																			when "SUPERSCREEN"
+																				case fn.funcgroup
+																					when "ACTION"
+																						li(id='ActionMenu_'+fn.funcname)
+																							a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+															li.has-sub
+																a(href='#')
+																	span VERIFY
+																ul
+																	each fn in datatoview
+																		case fn.projname
+																			when "SUPERSCREEN"
+																				case fn.funcgroup
+																					when "VERIFY"
+																						li(id='VerifyMenu_'+fn.funcname)
+																						a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}          
+															li.has-sub
+																a(href='#')
+																	span UTILITY
+																ul
+																	each fn in datatoview
+																		case fn.projname
+																			when "SUPERSCREEN"
+																				case fn.funcgroup
+																					when "UTILITY"
+																						li(id='UtilityMenu_'+fn.funcname)
+																							a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
 											li
 												a(href='#')
 													span About
