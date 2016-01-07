@@ -100,15 +100,15 @@ html
 										when funcName
 												br
 												form(method='POST' id='formFn')
-													table#tb1(align='center')
+													table#tb1(border='2', width='970')
 														tr
 															td Function Name
 															td
-																input(type='text', size='80%', name='funcname', id='txt_Name_'+funcName, value='#{funcName}') 
+																input(type='text', size='130%', name='funcname', id='txt_Name_'+funcName, value='#{funcName}') 
 														tr
 															td Function Description
 															td
-																input(type='text', size='80%', name='funcdesc', value='#{fn.funcdesc}', id='txt_Description_'+funcName)
+																input(type='text', size='130%', name='funcdesc', value='#{fn.funcdesc}', id='txt_Description_'+funcName)
 														tr
 															td Function Group
 															td
@@ -123,10 +123,13 @@ html
 																		//- option(value='UTILITY',selected='true') UTILITY
 													br
 													input(id='hiddenPj',type='hidden',name='projname',value='SUPERSCREEN')
-													div(align='center')
+													//- div(align='center')
 														input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
 														input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
-													table#tb2(align='center')
+													br
+													table#tb2(border='2', width='970')
+														input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
+														input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
 														tr
 															th Delete
 															th Parameter Name
