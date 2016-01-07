@@ -63,7 +63,7 @@ exports.ShowStatus = function(req, res, next){
 		if(err){
 			return next(err);
 		}else{
-			res.render('addStatus',{datatoview:data});
+			res.render('showStatus',{datatoview:data});
 		}
 	});	
 };
