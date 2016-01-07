@@ -11,7 +11,7 @@ html
     script(src='../js/editFunction.js')
     title :: Automate Document ::
   body        
-    form(name='form1')
+    div
       table(width='1000', align='center')
         tr
           td(colspan='2')
@@ -142,7 +142,7 @@ html
                 tr
                     td(colspan='4')
                       center
-                        button(onclick="window.open('/FnView/FnEdit/#{funcName}')") Edit
+                        button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
                         button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
       // #FOOTER
       tr
