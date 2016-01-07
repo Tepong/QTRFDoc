@@ -14,28 +14,30 @@ function addRow(tableID) {
  
 
                 newcell.innerHTML = table.rows[1].cells[i].innerHTML;
-                //alert(newcell.childNodes);
-                switch(newcell.childNodes[0].type) {
-                    case "text":
-                            newcell.childNodes[0].value = "";
-                             newcell.childNodes[0].id = "ParamName"+j;
-                             newcell.childNodes[0].name = "params["+j+"][paramname]";
-                            break;
-                    case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            newcell.childNodes[0].name = "delstat"+j;
-                            break;
-                    case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            // newcell.childNodes[0].id = "Require"+j;
-                            break;
+                // //alert(newcell.childNodes);
+                // switch(newcell.childNodes[0].type) {
+                //     case "text":
+                //             newcell.childNodes[0].value = "";
+                //              newcell.childNodes[0].id = "ParamName"+j;
+                //              newcell.childNodes[0].name = "params[0][paramname]";
+                //             break;
+                //     case "checkbox":
+                //             newcell.childNodes[0].checked = false;
+                //             newcell.childNodes[0].name =  "params[0][paramrequire]";
+                //             break;
+                //     case "select-one":
+                //             newcell.childNodes[0].selectedIndex = 0;
+                //             // newcell.childNodes[0].id = "Require"+j;
+                //             break;
 
-                }
-                if (i==2) {newcell.childNodes[0].id = "ParamDesc"+j;newcell.childNodes[0].name = "ParmDesc"+j;}
-                if (i==3) {newcell.childNodes[0].name = "ReqName"+j;}
-                if (i==4) {newcell.childNodes[0].id = "DefaValue"+j;newcell.childNodes[0].name = "DefValue"+j;}
+                // }
+                if (i==1) {newcell.childNodes[0].name = "params["+rowCount+"][paramname]";newcell.childNodes[0].value="";}
+                if (i==2) {newcell.childNodes[0].id = "ParamDesc"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdesc]";newcell.childNodes[0].value="";}
+                if (i==3) {newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";newcell.childNodes[0].value="";}
+                if (i==4) {newcell.childNodes[0].id = "DefaValue"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdefaultvalue]";newcell.childNodes[0].value="";}
 
-            }
+
+            }num=num+1;
         
             j++;
         }

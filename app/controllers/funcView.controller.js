@@ -75,9 +75,6 @@ exports.UpdateData= function(req,res){
 	var toUadate=req.body;
 	var conditions = { "funcname": req.params.funcName }
    	var options = { multi: false };
-
-
-   
 	var thing = new Func(toUadate);
    	Func.findOne({"funcname": req.params.funcName},function(err,findBefore){
    		if(err){
@@ -95,8 +92,10 @@ exports.UpdateData= function(req,res){
 								if(err){
 									return next(err);
 								}else{
+									// res.json(toUadate);
 									res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
 								}
+								
 							});	
 						 }
 				 	});
@@ -104,4 +103,6 @@ exports.UpdateData= function(req,res){
 			});
 		 }
    	});
+ // console.log(toUadate);
+ // res.json(toUadate);
 };

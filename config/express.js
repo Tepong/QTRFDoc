@@ -15,12 +15,12 @@ var bodyParser = require('../node_modules/body-parser');
 
 module.exports = function(){
 	var app = express();
-	app.use(function(req, res, next) {
-	   if(req.url.substr(-1) == '/' && req.url.length > 1)
-	       res.redirect(301, req.url.slice(0, -1));
-	   else
-	       next();
-	});
+	// app.use(function(req, res, next) {
+	//    if(req.url.substr(-1) == '/' && req.url.length > 1)
+	//        res.redirect(301, req.url.slice(0, -1));
+	//    else
+	//        next();
+	// });
  	app.use(bodyParser());
 	app.use(bodyParser.json()); // support json encoded bodies
 	app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
