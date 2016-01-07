@@ -145,8 +145,11 @@ html
                       td(colspan='4')
                         center
                           button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
-                          
                           button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
+
+                          //- button(type = "button",onclick="fnOpenNormalDialog()") test
+                          //- input#btnOpenDialog(type='button', value='Open Confirm Dialog',onclick="fnOpenNormalDialog()")
+                          //- #dialog-confirm
       // #FOOTER
       tr
         td(colspan='2')
