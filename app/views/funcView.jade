@@ -10,7 +10,6 @@ html
     //- script(src='script.js')
     script(src='../js/editFunction.js')
     title :: Automate Document ::
-
   body(ng-app='qtrf')
     div(ui-view='')
     form(name='form1', method='post', action='index1.html')
@@ -146,6 +145,7 @@ html
                     td
                       center Default Value
                   tr
+
                     -var name=datatoview.funcname
                     #{name}
                     each fn in datatoview
@@ -166,15 +166,24 @@ html
                                     font(size='2') No
                                 td
                                   font(size='2')  #{param.paramdefaultvalue}
+
+                table(border='0', align='center', width='1000')
+                  tr
+                    td(width='100')
+                      font(size='5') Image : 
+                    td
+                      font(size='4') InsertTextbox
+                  tr
+                    td(colspan='2', border='5')
+                      center
+                        img(src='../images/SearchMontrib_Mobile_big.jpg', width='750', height='480')
+                  br                  
+                tr
                   tr
                       td(colspan='4')
                         center
                           button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
                           button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
-
-                          //- button(type = "button",onclick="fnOpenNormalDialog()") test
-                          //- input#btnOpenDialog(type='button', value='Open Confirm Dialog',onclick="fnOpenNormalDialog()")
-                          //- #dialog-confirm
       // #FOOTER
       tr
         td(colspan='2')

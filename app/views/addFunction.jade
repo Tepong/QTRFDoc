@@ -102,11 +102,11 @@ html
                   tr
                     td Function Name
                     td
-                      input(type='text', size='80%', name='funcname', id='txt_Name_'+funcName) 
+                      input(type='text', size='80%', name='funcname', id='txt_Name_funcName') 
                   tr
                     td Function Description
                     td
-                      input(type='text', size='80%', name='funcdesc', value='', id='txt_Description_'+funcName)
+                      input(type='text', size='80%', name='funcdesc', value='', id='txt_Description_funcName')
                   tr
                     td Function Group
                     td                      
@@ -148,6 +148,7 @@ html
                       input#btnSave(type='Submit', value='Save', size='50%')
                     td#td_btnCancel
                       input(type='button', value='Cancel', onclick("window.open('FnView/#{datatoview.funcname}')"))
+                  br
 
       // #FOOTER
       tr#FooterPart
