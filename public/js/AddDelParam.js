@@ -32,7 +32,7 @@ function addRow(tableID) {
 
                 // }
                 if (i==1) {newcell.childNodes[0].name = "params["+rowCount+"][paramname]";newcell.childNodes[0].value="";}
-                if (i==2) {newcell.childNodes[0].id = "ParamDesc"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";newcell.childNodes[0].value="";}
+                if (i==2) {newcell.childNodes[0].id = "ParamDesc"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdesc]";newcell.childNodes[0].value="";}
                 if (i==3) {newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";newcell.childNodes[0].value="";}
                 if (i==4) {newcell.childNodes[0].id = "DefaValue"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdefaultvalue]";newcell.childNodes[0].value="";}
 
