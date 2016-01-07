@@ -98,7 +98,16 @@ html
 														tr
 															td Function Group
 															td
-																input(id='hiddenPj',type='Text',name='funcgroup',value='#{fn.funcgroup}')
+																//- input(id='hiddenPj',type='Text',name='funcgroup',value='#{fn.funcgroup}')
+																select(name='funcgroup')
+																	option(value='#{fn.funcgroup}') #{fn.funcgroup}
+																	option(value='-', disabled='true') --------------
+																	option(value='ACTION') ACTION
+																	option(value='VERIFY') VERIFY
+																	option(value='UTILITY') UTILITY
+																	//- option(value='ACTION') ACTION
+																	//- option(value='VERIFY') VERIFY
+																	//- option(value='UTILITY',selected='true') UTILITY
 													br
 													input(id='hiddenPj',type='hidden',name='projname',value='SUPERSCREEN')
 													
