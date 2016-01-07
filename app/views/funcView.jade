@@ -86,64 +86,67 @@ html
                                 a(href='#')
                                   span Contact
               // Row #2.2 .... Body
-              table(border='0', align='center', width='1000')
-                tr
-                  td(colspan='4')
-                    if statusTag == "True"
-                      font(size='5', color='red')
-                        center#Status Status Completed
-                      br
-                table(border='0', align='left', width='1000')
+
+              form(id="desForm", method="post", ACTION = "/ActionStatus/")
+                table(border='0', align='center', width='1000')
                   tr
-                    each fn in datatoview
-                      case fn.projname
-                        when "SUPERSCREEN"
-                          case  fn.funcname
-                            when funcName
-                              tr
-                                td(width= '150')
-                                  font(size='5') Function :
-                                td
-                                  font(size='4') #{fn.funcname}
-                                  br
-                              tr
-                                td
-                                  font(size='5') Descriptions :
-                                td
-                                  font(size='4') #{fn.funcdesc}
-                table(border='1', align='center', width='1000')
-                  tr
-                    td
-                      center Parameter
-                    td
-                      center Description
-                    td
-                      center Require Field
-                    td
-                      center Default Value
-                  tr
-                    -var name=datatoview.funcname
-                    #{name}
-                    each fn in datatoview
-                      case fn.projname
-                        when "SUPERSCREEN"
-                          case  fn.funcname
-                            when funcName
-                             each param in fn.params 
-                              tr
-                                td
-                                  font(size='2')  #{param.paramname}
-                                td
-                                  font(size='2')  #{param.paramdesc}
-                                td
-                                  font(size='2')  #{param.paramrequire}
-                                td
-                                  font(size='2')  #{param.paramdefaultvalue}
-                tr
                     td(colspan='4')
-                      center
-                        button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
-                        button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
+                      if statusTag == "True"
+                        font(size='5', color='red')
+                          center#Status Status Completed
+                        br
+                  table(border='0', align='left', width='1000')
+                    tr
+                      each fn in datatoview
+                        case fn.projname
+                          when "SUPERSCREEN"
+                            case  fn.funcname
+                              when funcName
+                                tr
+                                  td(width= '150')
+                                    font(size='5') Function :
+                                  td
+                                    font(size='4') #{fn.funcname}
+                                    br
+                                tr
+                                  td
+                                    font(size='5') Descriptions :
+                                  td
+                                    font(size='4') #{fn.funcdesc}
+                  table(border='1', align='center', width='1000')
+                    tr
+                      td
+                        center Parameter
+                      td
+                        center Description
+                      td
+                        center Require Field
+                      td
+                        center Default Value
+                    tr
+                      -var name=datatoview.funcname
+                      #{name}
+                      each fn in datatoview
+                        case fn.projname
+                          when "SUPERSCREEN"
+                            case  fn.funcname
+                              when funcName
+                               each param in fn.params 
+                                tr
+                                  td
+                                    font(size='2')  #{param.paramname}
+                                  td
+                                    font(size='2')  #{param.paramdesc}
+                                  td
+                                    font(size='2')  #{param.paramrequire}
+                                  td
+                                    font(size='2')  #{param.paramdefaultvalue}
+                  tr
+                      td(colspan='4')
+                        center
+                          button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
+                          
+                          button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
       // #FOOTER
       tr
         td(colspan='2')
