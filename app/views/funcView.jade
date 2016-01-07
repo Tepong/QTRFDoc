@@ -10,13 +10,15 @@ html
     //- script(src='script.js')
     script(src='../js/editFunction.js')
     title :: Automate Document ::
-  body        
-    div
+
+  body(ng-app='qtrf')
+    div(ui-view='')
+    form(name='form1', method='post', action='index1.html')
       table(width='1000', align='center')
         tr
           td(colspan='2')
             div(align='center')
-              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')
+              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')              
         // Row #2 .... Body+TaMenu        
         tr
           td(width='1000', bgcolor='#FFFFFF')
@@ -33,13 +35,23 @@ html
                           #cssmenu
                             ul
                               li
-                                a(href='../')
+                                a(href='/')
                                   span HOME
                               li.active.has-sub
                                 a(href='#')
                                   span PROJECT
                                 // Project Name
                                 ul
+                                  li.has-sub
+                                    a#addMenu(href='#') 
+                                      span + Add...
+                                    ul 
+                                      li 
+                                        a#addProj(href='/addProj')
+                                          span + Add Project...
+                                      li
+                                        a#addFunction(href='/addFunc')
+                                          span + Add Function...
                                   li.has-sub
                                     a#SUPERSCREEN(href='#')
                                       span SUPERSCREEN
@@ -78,7 +90,8 @@ html
                                               case fn.funcgroup
                                                 when "UTILITY"
                                                   li(id='UtilityMenu_'+fn.funcname)
-                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                  
                               li
                                 a(href='#')
                                   span About
@@ -93,6 +106,15 @@ html
                       font(size='5', color='red')
                         center#Status Status Completed
                       br
+                    else if statusTag == "AddSuccess"
+                      font(size='5', color='green')
+                        center#Status Add Function Completed
+                      br
+                    else if statusTag == "AddUnsuccess"
+                      font(size='5', color='red')
+                        center#Status Function Already Exist
+                      br
+
                 table(border='0', align='left', width='1000')
                   tr
                     each fn in datatoview

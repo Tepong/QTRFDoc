@@ -5,25 +5,27 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(href='../css/index1.css', rel='stylesheet')
-    link(href='../css/AddEditPCSS.css', rel='stylesheet')
-    script(src='../js/jquery.js', type='text/javascript')
-    script(src='script.js')
-    script(type='text/javascript', src='js/AddDelParam.js')
+    link(href='../../../css/index1.css', rel='stylesheet')
+    //- link(href='../../../css/AddEditPCSS.css', rel='stylesheet')  
+    link(href='../../../css/main.css', rel='stylesheet')  
+    link(href='../../../css/editFunction.css', rel='stylesheet')
+    script(src='../../../js/jquery.js', type='text/javascript')
+    script(src='script.js')    
+    script(type='text/javascript', src='../../../js/AddDelParam.js')
     title :: Automate Document ::
-  body(bgcolor='#D8D8D8')    
-    form(name='form1', method='post', action='/ActionStatus/')
-      table(width='1000', align='center')
-        tr
+
+  body(bgcolor='#D8D8D8')        
+      table#IndexTable(width='1000', border='0', align='center')
+        tr#HeaderPart
           td(colspan='2')
             div(align='center')
-              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')
+              img#HeaderImg(src='../../../images/banner.jpg', width='1000', height='250', bgcolor='#FFFFFF')
         // Row #2 .... Body+TaMenu        
-        tr
+        tr#BodyPart
           td(width='1000', bgcolor='#FFFFFF')
             div(align='center')
               // Row #2.1 .... TaMenu
-              table(width='800', border='0', align='center')
+              table#Menubar(width='800', border='0', align='center')
                 // Table Tab Menu
                 tr
                   td
@@ -32,24 +34,24 @@ html
                       tr
                         td(align='center')
                           #cssmenu
-                            ul
-                              li
-                                a(href='../')
+                            ul#MainMenu
+                              li#HomeMenu
+                                a#HomeMenuLink(href='../')
                                   span HOME
-                              li.active.has-sub
-                                a(href='#')
+                              li.active.has-sub#ProjectListMenu
+                                a#ProjectListMenuLink(href='#')
                                   span PROJECT
                                 // Project Name
-                                ul
-                                  li.has-sub
-                                    a#SUPERSCREEN(href='#')
+                                ul#ProjectMenu
+                                  li.has-sub#ProjectNameMenu
+                                    a#ProjectNameMenuLink(href='#')
                                       span SUPERSCREEN
                                     // Group Function SuperScreen
-                                    ul
-                                      li.has-sub
-                                        a(href='#')
+                                    ul#ActionMenu
+                                      li.has-sub#ActionName
+                                        a#ActionNameLink(href='#')
                                           span ACTION
-                                        ul
+                                        ul#ActionNameList
                                           each fn in datatoview
                                            case fn.projname
                                             when "SUPERSCREEN"
@@ -57,10 +59,10 @@ html
                                                 when "ACTION"
                                                   li(id='ActionMenu_'+fn.funcname)
                                                   a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-                                      li.has-sub
-                                        a(href='#')
+                                      li.has-sub#VerifyName
+                                        a(href='#')#VerifyNameLink
                                           span VERIFY
-                                        ul
+                                        ul#VerifyNameList
                                           each fn in datatoview
                                            case fn.projname
                                             when "SUPERSCREEN"
@@ -69,10 +71,10 @@ html
                                                   li(id='VerifyMenu_'+fn.funcname)
                                                   a(id='VerifyMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}          
                                   
-                                      li.has-sub
-                                        a(href='#')
+                                      li.has-sub#UtilityName
+                                        a#UtilityNameLink(href='#')
                                           span UTILITY
-                                        ul
+                                        ul#UtilityNameList
                                           each fn in datatoview
                                            case fn.projname
                                             when "SUPERSCREEN"
@@ -80,66 +82,76 @@ html
                                                 when "UTILITY"
                                                   li(id='UtilityMenu_'+fn.funcname)
                                                   a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
-                              li
-                                a(href='#')
+                              li#About
+                                a#AboutLink(href='#')
                                   span About
-                              li.last
-                                a(href='#')
+                              li.last#CONTACT
+                                a#CONTACTLink(href='#')
                                   span Contact
               // Row #2.2 .... Body
-              .MaxBoderwidth Add Function Page
-              -var txtFuncName = ''
+              .MaxBoderwidth Add Function
+              br
+              form(method='POST', id='formAddFn',enctype='application/json' ,action='/addFunc/')
+                table#tb1
+                  tr
+                    td Project Name
+                    td
+                      select       
+                         each pn in allProj
+                            option #{pn}
+                  tr
+                    td Function Name
+                    td
+                      input(type='text', size='80%', name='funcname', id='txt_Name_'+funcName) 
+                  tr
+                    td Function Description
+                    td
+                      input(type='text', size='80%', name='funcdesc', value='', id='txt_Description_'+funcName)
+                  tr
+                    td Function Group
+                    td                      
+                      select(name='funcgroup')
+                        option(value='-', disabled='true') --------------
+                        option(value='ACTION') ACTION
+                        option(value='VERIFY') VERIFY
+                        option(value='UTILITY') UTILITY
+
                 br
-                form(method='post', action='/yyyyyyy/')
-                  table#tb1
-                    tr
-                      td Project Name
-                      td
-                        select
-                          each pn in allProj
-                            option #{pn}              
-                    tr
-                      td Function Name
-                      td
-                        input(type='text', size='80%', name='fnName', value='#{txtFuncName}')
-                    tr
-                      td Function Description
-                      td
-                        input(type='text', size='80%', name='fnDes')
-                  br
-                  input(type='button', value='Add Parameter', onclick="addRow('tb2')")
-                  input(type='button', value='Delete Row', onclick="deleteRow('tb2')")
-                  table#tb2
-                    tr
-                      th Delete
-                      th Parameter Name
-                      th Description
-                      th Require Field
-                      th Default Value
-                    tr
-                      td
-                        input(type='checkbox', name='chk')
-                      td
-                        input#ParamName(type='text', name='params[1][paramname]')
-                      td
-                        input#ParamDesc(type='text', name='params[1][paramdesc]')
-                      td
-                        input(type='checkbox', name='params[1][paramrequire]')
-                        | Yes
-                      td
-                        input#DefaValue(type='text', name='params[1][paramdefaultvalue]')
-                  br
-                  table#tb3
-                    tr
-                      td
-                        input(type='Submit', value='Save', size='50%', onClick="window.location.href='/#{txtFuncName}/ActionStatus'")
-                      td
-                        input(type='button', value='Reset', onClick="window.location.href=window.location.href")
-                  br
+                input(id='hiddenPj',type='hidden',name='projname',value='SUPERSCREEN')
+                
+                input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
+                input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
+                table#tb2
+                  tr
+                    th Delete
+                    th Parameter Name
+                    th Description
+                    th Require Field
+                    th Default Value                                     
+
+                  tr#trParamList
+                    td#tdCol_Delete
+                      input#ParamDelete1(type='checkbox', name='chk')
+                    td#tdCol_ParameterName
+                      input#ParamName1(type='text', name='params[1][paramname]')
+                    td#tdCol_Description
+                      input#ParamDesc1(type='text', name='params[1][paramdesc]')
+                    td#tdCol_RequireField
+                      input#ParamReq1(type='checkbox', name='params[1][paramrequire]')
+                      | Yes
+                    td#tdCol_DefaultValue
+                      input#DefValue1(type='text', name='params[1][paramdefaultvalue]')
+                br
+                table#tb3
+                  tr
+                    td#td_btnSave
+                      input#btnSave(type='Submit', value='Save', size='50%')
+                    td#td_btnCancel
+                      input(type='button', value='Cancel', onclick("window.open('FnView/#{datatoview.funcname}')"))
 
       // #FOOTER
-      tr
+      tr#FooterPart
         td(colspan='2')
           div(align='center')
             center
-              img(src='../images/footer.jpg', width='1010', height='100')
+              img#FooterImg(src='../images/footer.jpg', width='1010', height='100')
