@@ -10,13 +10,14 @@ html
     //- script(src='script.js')
     script(src='../js/editFunction.js')
     title :: Automate Document ::
-  body
-    div
+  body(ng-app='qtrf')
+    div(ui-view='')
+    form(name='form1', method='post', action='index1.html')
       table(width='1000', align='center')
         tr
           td(colspan='2')
             div(align='center')
-              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')
+              img(src='../images/banner.jpg', width='1010', height='250', bgcolor='')              
         // Row #2 .... Body+TaMenu        
         tr
           td(width='1000', bgcolor='#FFFFFF')
@@ -33,13 +34,23 @@ html
                           #cssmenu
                             ul
                               li
-                                a(href='../')
+                                a(href='/')
                                   span HOME
                               li.active.has-sub
                                 a(href='#')
                                   span PROJECT
                                 // Project Name
                                 ul
+                                  li.has-sub
+                                    a#addMenu(href='#') 
+                                      span + Add...
+                                    ul 
+                                      li 
+                                        a#addProj(href='/addProj')
+                                          span + Add Project...
+                                      li
+                                        a#addFunction(href='/addFunc')
+                                          span + Add Function...
                                   li.has-sub
                                     a#SUPERSCREEN(href='#')
                                       span SUPERSCREEN
@@ -78,7 +89,8 @@ html
                                               case fn.funcgroup
                                                 when "UTILITY"
                                                   li(id='UtilityMenu_'+fn.funcname)
-                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}                                
+                                                  a(id='UtilityMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                                  
                               li
                                 a(href='#')
                                   span About
@@ -86,61 +98,78 @@ html
                                 a(href='#')
                                   span Contact
               // Row #2.2 .... Body
+            -var cccc = "ddd"
+            form(id="desForm", method="post", ACTION = "/ActionStatus/")
+              table(border='0', align='center', width='1000')
+                tr
+                  td(colspan='4')
+                    if statusTag == "True"
+                      font(size='5', color='red')
+                        center#Status Status Completed
+                      br
+                    else if statusTag == "AddSuccess"
+                      font(size='5', color='green')
+                        center#Status Add Function Completed
+                      br
+                    else if statusTag == "AddUnsuccess"
+                      font(size='5', color='red')
+                        center#Status Function Already Exist
+                      br
 
-              form(id="desForm", method="post", ACTION = "/ActionStatus/")
-                table(border='0', align='center', width='1000')
+                table(border='0', align='left', width='1000')
                   tr
-                    td(colspan='4')
-                      if statusTag == "True"
-                        font(size='5', color='red')
-                          center#Status Status Completed
-                        br
-                  table(border='0', align='left', width='1000')
-                    tr
-                      each fn in datatoview
-                        case fn.projname
-                          when "SUPERSCREEN"
-                            case  fn.funcname
-                              when funcName
-                                tr
-                                  td(width= '150')
-                                    font(size='5') Function :
-                                  td
-                                    font(size='4') #{fn.funcname}
-                                    br
-                                tr
-                                  td
-                                    font(size='5') Descriptions :
-                                  td
-                                    font(size='4') #{fn.funcdesc}
-                  table(border='1', align='center', width='1000')
-                    tr
-                      td
-                        center Parameter Name
-                      td
-                        center Description
-                      td
-                        center Require Field
-                      td
-                        center Default Value
-                    tr
-                      -var name=datatoview.funcname
-                      #{name}
-                      each fn in datatoview
-                        case fn.projname
-                          when "SUPERSCREEN"
-                            case  fn.funcname
-                              when funcName
-                               each param in fn.params 
-                                tr
-                                  td
-                                    font(size='2')  #{param.paramname}
-                                  td
-                                    font(size='2')  #{param.paramdesc}
-                                  td
-                                    font(size='2')  #{param.paramrequire}
-                                  td
-                                    font(size='2')  #{param.paramdefaultvalue}
+                    each fn in datatoview
+                      case fn.projname
+                        when "SUPERSCREEN"
+                          case  fn.funcname
+                            when funcName
+                              tr
+                                td(width= '150')
+                                  font(size='5') Function :
+                                td
+                                  font(size='4') #{fn.funcname}                                                                                                   
+                                  br
+                              tr
+                                td
+                                  font(size='5') Descriptions :
+                                td
+                                  font(size='4') #{fn.funcdesc}
+                              tr
+                                td(width= '150')
+                                  font(size='5') Group:
+                                td
+                                  font(size='4') #{fn.funcgroup}
+                                  br
+
+                table(border='1', align='center', width='1000')
+                  tr
+                    td
+                      center Parameter Name
+                    td
+                      center Description
+                    td
+                      center Require Field
+                    td
+                      center Default Value
+                  tr
+                    each fn in datatoview
+                      case fn.projname
+                        when "SUPERSCREEN"
+                          case  fn.funcname
+                            when funcName
+                             each param in fn.params 
+                              tr
+                                td
+                                  font(size='2')  #{param.paramname}
+                                td
+                                  font(size='2')  #{param.paramdesc}
+                                td
+                                  if param.paramrequire == "on"
+                                    font(size='2') Yes
+                                  else 
+                                    font(size='2') No
+                                td
+                                  font(size='2')  #{param.paramdefaultvalue}
                 table(border='0', align='center', width='1000')
                   tr
                     td(width='100')

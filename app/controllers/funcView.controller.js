@@ -41,7 +41,7 @@ exports.createProj = function(req, res, next){
 	res.render('addFunction')
 };
 
-exports.createFunc = function(req, res, next){
+exports.showPageAdd = function(req, res, next){
 	Func.find().distinct('projname', function(err, data) {
 	    if(err){
 			return next(err);
@@ -56,6 +56,41 @@ exports.createFunc = function(req, res, next){
 		}
 	});	
 };
+
+exports.createFunc= function(req,res){
+	var toUadate=req.body;
+	var conditions = { "funcname": toUadate.funcname, "projname": toUadate.projname }
+   	var options = { multi: false };
+	var data = new Func(toUadate);
+   	Func.findOne(conditions,function(err,findBefore){
+   		if(err){
+		 	return next(err);
+		 }else if(findBefore==null) {
+		 	data.save(function(err){
+		 		if(err){
+		 			return next(err);		 			
+		 		} else {
+		 			Func.find({"projname":toUadate.projname},function(err,data){
+						if(err){
+							return next(err);
+						}else{
+							res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddSuccess'});
+						};
+					});
+		 		};	
+		 	});
+		 }else{
+		 	Func.find({"projname":toUadate.projname},function(err,data){
+				if(err){
+					return next(err);
+				}else{
+					res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddUnsuccess'});
+				};
+			});
+		 };		 	
+   	});
+};
+
 
 exports.ShowStatus = function(req, res, next){
 
@@ -105,4 +140,24 @@ exports.UpdateData= function(req,res){
    	});
  // console.log(toUadate);
  // res.json(toUadate);
+};
+
+exports.DeleteFunction= function(req,res){
+var conditions = { "funcname": req.params.funcName }
+		Func.findOne(conditions,function(err,findBefore){
+			if (err) {
+				console.log(err);
+				return next(err);
+			}else{
+				Func.remove({"_id": findBefore._id}, function(err){
+					if (err) {
+						console.log(err);
+						return next(err);
+					}else{
+
+					}
+				});
+
+			};
+		});
 };

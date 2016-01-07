@@ -1,4 +1,4 @@
-var j=1;
+// var j=1;
 function addRow(tableID) {
  
             var table = document.getElementById(tableID);
@@ -31,15 +31,25 @@ function addRow(tableID) {
                 //             break;
 
                 // }
-                if (i==1) {newcell.childNodes[0].name = "params["+rowCount+"][paramname]";newcell.childNodes[0].value="";}
-                if (i==2) {newcell.childNodes[0].id = "ParamDesc"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdesc]";newcell.childNodes[0].value="";}
-                if (i==3) {newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";newcell.childNodes[0].value="";}
-                if (i==4) {newcell.childNodes[0].id = "DefaValue"+j;newcell.childNodes[0].name = "params["+rowCount+"][paramdefaultvalue]";newcell.childNodes[0].value="";}
-
-
-            }num=num+1;
+                if (i==1) {
+                    newcell.childNodes[0].id = "ParamName"+rowCount;
+                    newcell.childNodes[0].name = "params["+rowCount+"][paramname]";
+                    newcell.childNodes[0].value="";
+                }else if (i==2) {
+                    newcell.childNodes[0].id = "ParamDesc"+rowCount;
+                    newcell.childNodes[0].name = "params["+rowCount+"][paramdesc]";
+                    newcell.childNodes[0].value="";
+                } else if (i==3) {
+                    newcell.childNodes[0].id = "ParamReq"+rowCount;
+                    newcell.childNodes[0].name = "params["+rowCount+"][paramrequire]";                    
+                } else if (i==4){
+                    newcell.childNodes[0].id = "DefValue"+rowCount;
+                    newcell.childNodes[0].name = "params["+rowCount+"][paramdefaultvalue]";
+                    newcell.childNodes[0].value="";
+                }
+            }//num=num+1;
         
-            j++;
+            // j++;
         }
 
 
