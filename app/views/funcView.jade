@@ -98,7 +98,7 @@ html
                                 a(href='#')
                                   span Contact
               // Row #2.2 .... Body
-
+            -var cccc = "ddd"
             form(id="desForm", method="post", ACTION = "/ActionStatus/")
               table(border='0', align='center', width='1000')
                 tr
@@ -127,13 +127,20 @@ html
                                 td(width= '150')
                                   font(size='5') Function :
                                 td
-                                  font(size='4') #{fn.funcname}
+                                  font(size='4') #{fn.funcname}                                                                                                   
+                                  br
+                              tr
+                                td(width= '150')
+                                  font(size='5') Group:
+                                td
+                                  font(size='4') #{fn.funcgroup}
                                   br
                               tr
                                 td
                                   font(size='5') Descriptions :
                                 td
                                   font(size='4') #{fn.funcdesc}
+
                 table(border='1', align='center', width='1000')
                   tr
                     td
@@ -146,8 +153,7 @@ html
                       center Default Value
                   tr
 
-                    -var name=datatoview.funcname
-                    #{name}
+
                     each fn in datatoview
                       case fn.projname
                         when "SUPERSCREEN"
@@ -172,7 +178,7 @@ html
                     td(width='100')
                       font(size='5') Image : 
                     td
-                      font(size='4') InsertTextbox
+                      font(size='4') #{funcName}
                   tr
                     td(colspan='2', border='5')
                       center
