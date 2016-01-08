@@ -139,7 +139,7 @@ exports.UpdateData= function(req,res){
 									return next(err);
 								}else{
 									// res.json(toUadate);
-									res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});
+									res.render('funcView',{datatoview:data, funcName:req.params.funcName, statusTag:'True'});									
 								}
 								
 							});	
