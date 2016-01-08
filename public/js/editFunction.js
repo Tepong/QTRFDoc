@@ -4,12 +4,11 @@ function PopUpDelete(funcname)
     try{
         var tag = window.confirm("Are you sure you want to delete " + funcname + " ?");
         if (tag == true) {
-            // document.getElementById("desForm").submit()
-            window.location.href='/ShowStatus/'+funcname;
+            document.getElementById("desForm").submit()
         } 
         else {
             //alert("You pressed Cancel!"); //Do nothing
-        } 
+        }
 
     }
     catch(e) {

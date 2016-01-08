@@ -142,3 +142,22 @@ exports.UpdateData= function(req,res){
  // res.json(toUadate);
 };
 
+exports.DeleteFunction= function(req,res){
+var conditions = { "funcname": req.params.funcName }
+		Func.findOne(conditions,function(err,findBefore){
+			if (err) {
+				console.log(err);
+				return next(err);
+			}else{
+				Func.remove({"_id": findBefore._id}, function(err){
+					if (err) {
+						console.log(err);
+						return next(err);
+					}else{
+
+					}
+				});
+
+			};
+		});
+};
