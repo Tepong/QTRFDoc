@@ -12,7 +12,7 @@ html
 		script(type='text/javascript', src='../../../js/AddDelParam.js')
 		title :: Automate Document ::
 	body(bgcolor='#ffffff')
-		form#IndexForm(name='form1', method='POST', enctype='application/json' ,action='/FnView/#{funcName}/')
+		form#IndexForm(name='form1', method='POST', enctype='application/json' ,action='/FnView/#{funcName}')
 			table(width='1000', align='center')
 				tr
 					td(colspan='2')
@@ -147,7 +147,7 @@ html
 																	//- 	| Yes
 
 																td#tdCol_RequireField
-																	if param.paramrequire == "On"
+																	if param.paramrequire == "on"
 																		input(id='chk_Require'+param.paramname, type='checkbox', name='params[#{k=k+1}][paramrequire]', checked = true)
 																		| Yes
 																	else
