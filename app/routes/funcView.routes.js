@@ -11,7 +11,7 @@ module.exports = function(app){
 	app.post('/FnView/:funcName/', func.UpdateData);
 
 	// DeleteFunction
-	app.get('/ShowStatus/:funcName',func.DeleteFunction);
+	// app.get('/ShowStatus/:funcName',func.DeleteFunction);
 	
 	app.post('/ActionStatus/', func.ShowStatus);
 
