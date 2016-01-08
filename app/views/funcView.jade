@@ -93,20 +93,20 @@ html
         //Description
         table(border='0', align='center', width='1000')
           tr
-            td(width= '150')
-              font(size='5') Function :
+            td(width= '150')              
+                font(size='5')  Function :
             td
-              font(size='4') #{dataFunc.funcname}                                                                                                   
+              p(id='Function', style='font-size="4"') #{dataFunc.funcname}
           tr
-            td
+            td              
               font(size='5') Descriptions :
             td
-              font(size='4') #{dataFunc.funcdesc}
+              p(id='Descriptions', style='font-size="4"') #{dataFunc.funcdesc}                
           tr
-            td(width= '150')
+            td(width= '150')              
               font(size='5') Group:
             td
-              font(size='4') #{dataFunc.funcgroup}
+              p(id='Group', style='font-size="4"') #{dataFunc.funcgroup}                
 
         //Description Detail
         table(border='1', align='center', width='1000')
@@ -137,7 +137,7 @@ html
             td(width='100')
               font(size='5') Image : 
             td
-              font(size='4') #{dataFunc.funcname}   
+              p(id='Image', style='font-size="4"') #{dataFunc.funcname}                
           tr
             td(colspan='2', border='5')
               center

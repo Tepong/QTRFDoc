@@ -81,26 +81,56 @@ exports.createFunc= function(req,res){
 		 		if(err){
 		 			return next(err);		 			
 		 		} else {
-		 			Func.find({"projname":toUadate.projname},function(err,data){
-						if(err){
+		 			Func.find().distinct('projname', function(err, allPr) {
+					    if(err){
 							return next(err);
 						}else{
-							res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddSuccess'});
-						};
-					});
+							Func.find({"projname":toUadate.projname},function(err,dataAll){
+								if(err){
+									return next(err);
+								}else{
+									console.log(toUadate.funcname);
+									Func.findOne({"funcname":toUadate.funcname},function(err,detail){
+										if(err){
+											return next(err);
+										}else{
+											console.log(detail);
+											res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail, statusTag:'AddSuccess'});	
+										}
+									});		
+								}
+							});				
+						}
+					});	
 		 		};	
 		 	});
 		 }else{
-		 	Func.find({"projname":toUadate.projname},function(err,data){
-				if(err){
+		 	Func.find().distinct('projname', function(err, allPr) {
+			    if(err){
 					return next(err);
 				}else{
-					res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddUnsuccess'});
-				};
-			});
+					Func.find({"projname":toUadate.projname},function(err,dataAll){
+						if(err){
+							return next(err);
+						}else{
+							console.log(toUadate.funcname);
+							Func.findOne({"funcname":toUadate.funcname},function(err,detail){
+								if(err){
+									return next(err);
+								}else{
+									console.log(detail);
+									res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail, statusTag:'AddUnsuccess'});	
+								}
+							});		
+						}
+					});				
+				}
+			});	
 		 };		 	
    	});
 };
+
+	
 
 
 exports.ShowStatus = function(req, res, next){
@@ -173,29 +203,9 @@ Func.find().distinct('projname', function(err, allPr) {
 
 
 exports.DeleteFunction= function(req,res){
-var conditions = { "funcname": req.params.funcName, "projname":"SUPERSCREEN" }
-// 	//------------------------------------------------------
-// Func.find({"projname":"SUPERSCREEN"},function(err,data1){
-// 								if(err){
-// 										return next(err);
-// 								}else{
-// 										res.render('index',{datatoview:data1});
-// 									}
-// 							});	
+	var conditions = { "funcname": req.params.funcName, "projname":"SUPERSCREEN" }
 
-// //=============================================================
-// Func.findOne(conditions,function(err,findBefore){
-// 			if (err) {
-// 				return next(err);
-// 			}else{
-// 				Func.remove({"_id": findBefore._id}, function(err){
-// 					if (err) {
-// 				 		return next(err);
-// 			 	}
-// 		 });}
-// 	});
-
-Func.findOne(conditions,function(err,findBefore){
+	Func.findOne(conditions,function(err,findBefore){
 			if (err) {
 				return next(err);
 			}else{
@@ -206,7 +216,6 @@ Func.findOne(conditions,function(err,findBefore){
 					if (err) {
 				 		return next(err);
 				 	}else{
-//------------------------------------------------------
 							Func.find({"projname":"SUPERSCREEN"},function(err,data1){
 								if(err){
 										return next(err);
@@ -214,7 +223,6 @@ Func.findOne(conditions,function(err,findBefore){
 										res.render('showStatus',{datatoview:data1});
 									}
 							});	
-//-----------------------------------------------------
 					}
 				});
 			};
