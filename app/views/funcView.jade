@@ -6,9 +6,14 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(href='../css/index1.css', rel='stylesheet')
-    script(src='../js/jquery.js', type='text/javascript')
-    //- script(src='script.js')
-    script(src='../js/editFunction.js')
+    link(href='../css/ConfirmationBox-Bootstrap.css', rel='stylesheet', type="text/css")
+
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    //- script(src='../js/editFunction.js')
+    script(src='../js/ConfirmationBox-Bootstrap.js')
+
     title :: Automate Document ::
   body
     table(width='1000', align='center')
@@ -132,15 +137,37 @@ html
             td(width='100')
               font(size='5') Image : 
             td
-              font(size='4') #{funcName}
+              font(size='4') #{dataFunc.funcname}   
           tr
             td(colspan='2', border='5')
               center
                 img(src='../images/SearchMontrib_Mobile_big.jpg', width='750', height='480')
 
-        center
-          button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{funcName}'") Edit
-          button(type = "button",onclick="PopUpDelete('#{funcName}')") Delete
+        //Below bottom
+        .container
+          center
+            button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{dataFunc.funcname}   '") Edit
+            button#btnConfirmDelete(type='button') Delete
+          #modalDeleteDialog.modal.fade(role='dialog')
+            .modal-dialog
+              // Modal content
+              .modal-content
+                .modal-header(style='padding:35px 50px;')
+                  button.close(type='button', data-dismiss='modal') ?
+                  h4
+                    span
+                      | Delete Confirmation : #{funcName} 
+                .modal-body(style='padding:40px 50px;')
+                  span
+                    | Are you sure you want to delete function #{dataFunc.funcname}? 
+                .modal-footer
+                  //- button.btn.btn-success(type='submit', data-dismiss='modal', onClick="window.location.href='/ActionStatus/'")
+                  button.btn.btn-success(type='submit', data-dismiss='modal', onClick="PopUpDelete('#{dataFunc.funcname}')")
+                    span
+                    |  Confirm
+                  button.btn.btn-danger.btn-default(type='submit', data-dismiss='modal')
+                    span
+                    |  Cancel
   // #FOOTER
   footer
     div(align='center')
