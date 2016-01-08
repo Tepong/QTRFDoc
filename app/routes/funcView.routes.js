@@ -9,6 +9,8 @@ module.exports = function(app){
 	app.post('/addFunc/', func.createFunc);
 
 	app.post('/FnView/:funcName/', func.UpdateData);
-
+	//
+	app.get('/Deleted/:funcName',func.DeleteFunction);
+	//
 	app.post('/ActionStatus/', func.ShowStatus);
 };

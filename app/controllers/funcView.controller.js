@@ -143,21 +143,51 @@ exports.UpdateData= function(req,res){
 };
 
 exports.DeleteFunction= function(req,res){
-var conditions = { "funcname": req.params.funcName }
-		Func.findOne(conditions,function(err,findBefore){
+var conditions = { "funcname": req.params.funcName, "projname":"SUPERSCREEN" }
+// 	//------------------------------------------------------
+// Func.find({"projname":"SUPERSCREEN"},function(err,data1){
+// 								if(err){
+// 										return next(err);
+// 								}else{
+// 										res.render('index',{datatoview:data1});
+// 									}
+// 							});	
+
+// //=============================================================
+// Func.findOne(conditions,function(err,findBefore){
+// 			if (err) {
+// 				return next(err);
+// 			}else{
+// 				Func.remove({"_id": findBefore._id}, function(err){
+// 					if (err) {
+// 				 		return next(err);
+// 			 	}
+// 		 });}
+// 	});
+
+Func.findOne(conditions,function(err,findBefore){
 			if (err) {
-				console.log(err);
 				return next(err);
 			}else{
-				Func.remove({"_id": findBefore._id}, function(err){
+			// 	console.log(findBefore._id);
+			// 	res.json(findBefore);
+			// }
+				Func.remove(conditions, function(err){
 					if (err) {
-						console.log(err);
-						return next(err);
-					}else{
-
+				 		return next(err);
+				 	}else{
+//------------------------------------------------------
+							Func.find({"projname":"SUPERSCREEN"},function(err,data1){
+								if(err){
+										return next(err);
+								}else{
+										res.render('showStatus',{datatoview:data1});
+									}
+							});	
+//-----------------------------------------------------
 					}
 				});
-
 			};
 		});
+
 };
