@@ -81,26 +81,56 @@ exports.createFunc= function(req,res){
 		 		if(err){
 		 			return next(err);		 			
 		 		} else {
-		 			Func.find({"projname":toUadate.projname},function(err,data){
-						if(err){
+		 			Func.find().distinct('projname', function(err, allPr) {
+					    if(err){
 							return next(err);
 						}else{
-							res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddSuccess'});
-						};
-					});
+							Func.find({"projname":toUadate.projname},function(err,dataAll){
+								if(err){
+									return next(err);
+								}else{
+									console.log(toUadate.funcname);
+									Func.findOne({"funcname":toUadate.funcname},function(err,detail){
+										if(err){
+											return next(err);
+										}else{
+											console.log(detail);
+											res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail, statusTag:'AddSuccess'});	
+										}
+									});		
+								}
+							});				
+						}
+					});	
 		 		};	
 		 	});
 		 }else{
-		 	Func.find({"projname":toUadate.projname},function(err,data){
-				if(err){
+		 	Func.find().distinct('projname', function(err, allPr) {
+			    if(err){
 					return next(err);
 				}else{
-					res.render('funcView',{datatoview:data, funcName:toUadate.funcname, statusTag:'AddUnsuccess'});
-				};
-			});
+					Func.find({"projname":toUadate.projname},function(err,dataAll){
+						if(err){
+							return next(err);
+						}else{
+							console.log(toUadate.funcname);
+							Func.findOne({"funcname":toUadate.funcname},function(err,detail){
+								if(err){
+									return next(err);
+								}else{
+									console.log(detail);
+									res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail, statusTag:'AddUnsuccess'});	
+								}
+							});		
+						}
+					});				
+				}
+			});	
 		 };		 	
    	});
 };
+
+	
 
 
 exports.ShowStatus = function(req, res, next){
