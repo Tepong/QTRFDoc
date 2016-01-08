@@ -1,15 +1,26 @@
 var Func = require('../../node_modules/mongoose').model('Func');
 
 exports.FuncDetailRender = function(req, res){
-	
-	Func.find({"projname":"SUPERSCREEN"},function(err,data){
-		if(err){
+	Func.find().distinct('projname', function(err, allPr) {
+	    if(err){
 			return next(err);
 		}else{
-			res.render('funcView',{datatoview:data, funcName:req.params.funcName});
+			Func.find({},function(err,dataAll){
+				if(err){
+					return next(err);
+				}else{
+					Func.findOne({"funcname":req.params.funcName},function(err,detail){
+						if(err){
+							return next(err);
+						}else{
+							console.log(detail);
+							res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail});	
+						}
+					});		
+				}
+			});				
 		}
 	});	
-
 };
 
 exports.FuncEdit = function(req, res){

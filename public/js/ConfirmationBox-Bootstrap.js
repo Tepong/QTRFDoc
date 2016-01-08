@@ -1,8 +1,8 @@
 
-      $(document).ready(function()
-      {
-        $("#btnConfirmDelete").click(function()
-        {
-          $("#modalDeleteDialog").modal();
-        });
-      });
+$(document).ready(function()
+	{
+		$("#btnConfirmDelete").click(function()
+		{
+		  $("#modalDeleteDialog").modal();
+	});
+});	
