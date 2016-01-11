@@ -180,9 +180,15 @@ Func.find().distinct('projname', function(err, allPr) {
 														if(err){
 															return next(err);
 													}else{
-									// res.json(toUadate);
+															Func.findOne({"funcname":req.params.funcName},function(err,detail1){
+															if (err) {
+																return next(err);
+															} else{
+																res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail1,statusTag:'True'});
+															};
+														});
 														// res.render('funcView',{datatoview:data,funcName:req.params.funcName, statusTag:'True'});									
-														res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail,statusTag:'True'});	
+															
 														}
 									
 													});	
