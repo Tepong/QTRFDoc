@@ -68,5 +68,5 @@ block HFTemplete_body_1
       tr
         td#td_btnSave
           input#btnSave(type='Submit', value='Save', size='50%')
-        td#td_btnCancel
-          input(type='button', value='Cancel', onclick("window.open('FnView/#{datatoview.funcname}')"))
+        td#td_btnReset
+          input(type='button', value='Reset', onclick="window.location.href=window.location.href")
