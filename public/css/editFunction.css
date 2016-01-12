@@ -81,6 +81,7 @@ nav ul {
 body {
     background-image: url();
     background-color: #ffffff;
+    text-align: center;
     }
     table,tr,td{
                     /*vertical-align: text-top;*/
@@ -97,6 +98,7 @@ h1{color:#abc}h2{color:#abc}h3{color:#abc}
         list-style: none;
         position: relative;
         display: inline-table;
+
     }
     nav ul:after {
         content: ""; clear: both; display: block;
@@ -173,6 +175,7 @@ h1{color:#abc}h2{color:#abc}h3{color:#abc}
 body {
     background-image: url();
     background-color: #FFFFFF;
+    text-align: center;
     }
     table,tr,td{
                     /*vertical-align: text-top;*/
