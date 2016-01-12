@@ -30,7 +30,7 @@ module.exports = function(){
 
 	require('../app/routes/index.routes')(app);
 	require('../app/routes/funcView.routes')(app);
-		
+
 	app.use(express.static('./public'));
 	return app;
 };

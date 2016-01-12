@@ -180,7 +180,7 @@ Func.find().distinct('projname', function(err, allPr) {
 														if(err){
 															return next(err);
 													}else{
-															Func.findOne({"funcname":req.params.funcName},function(err,detail1){
+															Func.findOne({"funcname":toUadate.funcname},function(err,detail1){
 															if (err) {
 																return next(err);
 															} else{
@@ -235,3 +235,7 @@ exports.DeleteFunction= function(req,res){
 		});
 
 };
+
+exports.testingQS =function(req,res){
+	
+}
