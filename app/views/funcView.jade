@@ -1,174 +1,109 @@
-html
-  head
-    // menu
-    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(href='../css/index1.css', rel='stylesheet')
-    link(href='../css/ConfirmationBox-Bootstrap.css', rel='stylesheet', type="text/css")
+extends HFTemplete
 
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
-    script(src='../js/editFunction.js')
-    script(src='../js/ConfirmationBox-Bootstrap.js')
+block HFTemplete_css_1
+  link(href='../css/index1.css', rel='stylesheet')
 
-    title :: Automate Document ::
-  body
-    table(width='1000', align='center')
+block HFTemplete_head_1
+  link(href='../css/ConfirmationBox-Bootstrap.css', rel='stylesheet', type="text/css")
+  link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+  script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+  script(src='../js/editFunction.js')
+  script(src='../js/ConfirmationBox-Bootstrap.js')
 
-      //Header
-      div(align='center')
-        img(src='../images/banner.jpg', width='1000', height='250', bgcolor='')     
+block HFTemplete_body_1
+  //Status bar
+  table(border='0', align='center', width='1000')
+    tr
+      td(colspan='4')
+        if statusTag == "True"
+          font(size='5', color='red')
+            center#Status Status Completed
+          br
+        else if statusTag == "AddSuccess"
+          font(size='5', color='green')
+            center#Status Add Function Completed
+          br
+        else if statusTag == "AddUnsuccess"
+          font(size='5', color='red')
+            center#Status Function Already Exist
+          br
+  
+  //Description
+  table(border='0', align='center', width='1000')
+    tr
+      td(width= '150')              
+          font(size='5')  Function :
+      td
+        p(id='Function', style='font-size="4"') #{dataFunc.funcname}
+    tr
+      td              
+        font(size='5') Descriptions :
+      td
+        p(id='Descriptions', style='font-size="4"') #{dataFunc.funcdesc}                
+    tr
+      td(width= '150')              
+        font(size='5') Group:
+      td
+        p(id='Group', style='font-size="4"') #{dataFunc.funcgroup}                
 
-
-      //Menubar 
+  //Description Detail
+  table(border='1', align='center', width='1000')
+    tr
+      td
+        center Parameter Name
+      td
+        center Description
+      td
+        center Require Field
+      td
+        center Default Value
+    each data in dataFunc.params
       tr
-        td(align='center')
-          #cssmenu
-            ul
-              li
-                a(href='/') HOME 
-              li.active.has-sub
-                a(href='#') PROJECT
-                ul
-                  li.has-sub
-                    a#addMenu(href='#') + Add...
-                    ul 
-                      li 
-                        a#addProj(href='/addProj') + Add Project...
-                      li
-                        a#addFunction(href='/addFunc') + Add Function...
-                  each proj in allProj
-                    li.has-sub
-                      a(id=proj) #{proj}
-                      ul
-                        li.has-sub
-                          a(href='#') ACTION
-                          ul
-                            each fn in datatoview
-                              if fn.projname == proj
-                                if fn.funcgroup == "ACTION"
-                                  li(id='ActionMenu_'+fn.funcname)
-                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-                        li.has-sub
-                          a(href='#') VERIFY
-                          ul
-                            each fn in datatoview
-                              if fn.projname == proj
-                                if fn.funcgroup == "VERIFY"
-                                  li(id='ActionMenu_'+fn.funcname)
-                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-                        li.has-sub
-                          a(href='#') UTILITY
-                          ul
-                            each fn in datatoview
-                              if fn.projname == proj
-                                if fn.funcgroup == "UTILITY"
-                                  li(id='ActionMenu_'+fn.funcname)
-                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
-              li
-                a(href='#') About
-              li.last
-                a(href='#') Contact
+        td
+          font(size='2')  #{data.paramname}
+        td
+          font(size='2')  #{data.paramdesc}
+        td
+          if data.paramrequire == "on"
+            font(size='2') Yes
+          else 
+            font(size='2') No
+        td
+          font(size='2')  #{data.paramdefaultvalue}
+  table(border='0', align='center', width='1000')
+    tr
+      td(width='100')
+        font(size='5') Image : 
+      td
+        p(id='Image', style='font-size="4"') #{dataFunc.funcname}                
+    tr
+      td(colspan='2', border='5')
+        center
+          img(src='../images/SearchMontrib_Mobile_big.jpg', width='750', height='480')
 
-        //Status bar
-        table(border='0', align='center', width='1000')
-          tr
-            td(colspan='4')
-              if statusTag == "True"
-                font(size='5', color='red')
-                  center#Status Status Completed
-                br
-              else if statusTag == "AddSuccess"
-                font(size='5', color='green')
-                  center#Status Add Function Completed
-                br
-              else if statusTag == "AddUnsuccess"
-                font(size='5', color='red')
-                  center#Status Function Already Exist
-                br
-        
-        //Description
-        table(border='0', align='center', width='1000')
-          tr
-            td(width= '150')              
-                font(size='5')  Function :
-            td
-              p(id='Function', style='font-size="4"') #{dataFunc.funcname}
-          tr
-            td              
-              font(size='5') Descriptions :
-            td
-              p(id='Descriptions', style='font-size="4"') #{dataFunc.funcdesc}                
-          tr
-            td(width= '150')              
-              font(size='5') Group:
-            td
-              p(id='Group', style='font-size="4"') #{dataFunc.funcgroup}                
-
-        //Description Detail
-        table(border='1', align='center', width='1000')
-          tr
-            td
-              center Parameter Name
-            td
-              center Description
-            td
-              center Require Field
-            td
-              center Default Value
-          each data in dataFunc.params
-            tr
-              td
-                font(size='2')  #{data.paramname}
-              td
-                font(size='2')  #{data.paramdesc}
-              td
-                if data.paramrequire == "on"
-                  font(size='2') Yes
-                else 
-                  font(size='2') No
-              td
-                font(size='2')  #{data.paramdefaultvalue}
-        table(border='0', align='center', width='1000')
-          tr
-            td(width='100')
-              font(size='5') Image : 
-            td
-              p(id='Image', style='font-size="4"') #{dataFunc.funcname}                
-          tr
-            td(colspan='2', border='5')
-              center
-                img(src='../images/SearchMontrib_Mobile_big.jpg', width='750', height='480')
-
-        //Below bottom
-        .container
-          center
-            button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{dataFunc.funcname}   '") Edit
-            button#btnConfirmDelete(type='button') Delete
-          #modalDeleteDialog.modal.fade(role='dialog')
-            .modal-dialog
-              // Modal content
-              .modal-content
-                .modal-header(style='padding:35px 50px;')
-                  button.close(type='button', data-dismiss='modal') ?
-                  h4
-                    span
-                      | Delete Confirmation : #{funcName} 
-                .modal-body(style='padding:40px 50px;')
-                  span
-                    | Are you sure you want to delete function #{dataFunc.funcname}? 
-                .modal-footer
-                  //- button.btn.btn-success(type='submit', data-dismiss='modal', onClick="window.location.href='/ActionStatus/'")
-                  button.btn.btn-success(type='submit', data-dismiss='modal', onClick="PopUpDelete('#{dataFunc.funcname}')")
-                    span
-                    |  Confirm
-                  button.btn.btn-danger.btn-default(type='submit', data-dismiss='modal')
-                    span
-                    |  Cancel
-  // #FOOTER
-  footer
-    div(align='center')
-      img(src='../images/footer.jpg', width='1000', height='100')
+  //Below bottom
+  .container
+    center
+      button(type='button'  onClick="window.location.href='/FnView/FnEdit/#{dataFunc.funcname}   '") Edit
+      button#btnConfirmDelete(type='button') Delete
+    #modalDeleteDialog.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header(style='padding:35px 50px;')
+            button.close(type='button', data-dismiss='modal') ?
+            h4
+              span
+                | Delete Confirmation : #{funcName} 
+          .modal-body(style='padding:40px 50px;')
+            span
+              | Are you sure you want to delete function #{dataFunc.funcname}? 
+          .modal-footer
+            //- button.btn.btn-success(type='submit', data-dismiss='modal', onClick="window.location.href='/ActionStatus/'")
+            button.btn.btn-success(type='submit', data-dismiss='modal', onClick="PopUpDelete('#{dataFunc.funcname}')")
+              span
+              |  Confirm
+            button.btn.btn-danger.btn-default(type='submit', data-dismiss='modal')
+              span
+              |  Cancel

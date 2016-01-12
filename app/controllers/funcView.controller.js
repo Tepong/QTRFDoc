@@ -13,7 +13,6 @@ exports.FuncDetailRender = function(req, res){
 						if(err){
 							return next(err);
 						}else{
-							console.log(detail);
 							res.render('funcView',{datatoview:dataAll, allProj:allPr, dataFunc:detail});	
 						}
 					});		

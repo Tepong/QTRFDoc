@@ -1,0 +1,83 @@
+html
+  head
+    // menu
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    block HFTemplete_css_1
+      link(href='css/index1.css', rel='stylesheet')
+
+    block HFTemplete_js_1
+      script(src='./js/jquery.js', type='text/javascript')
+
+    block HFTemplete_title
+      title :: Automate Document ::  
+
+    block HFTemplete_head_1
+
+  body
+    table(width='1000', align='center')
+
+      //Header
+      div(align='center')
+        img(src='../images/banner.jpg', width='1000', height='250', bgcolor='')     
+
+      //Menubar 
+      tr
+        td(align='center')
+          #cssmenu
+            ul
+              li
+                a(href='/') HOME 
+              li.active.has-sub
+                a(href='#') PROJECT
+                ul
+                  li.has-sub
+                    a#addMenu(href='#') + Add...
+                    ul 
+                      li 
+                        a#addProj(href='/addProj') + Add Project...
+                      li
+                        a#addFunction(href='/addFunc') + Add Function...
+                  each proj in allProj
+                    li.has-sub
+                      a(id=proj href='#') #{proj}
+                      ul
+                        li.has-sub
+                          a(href='#') ACTION
+                          ul
+                            each fn in datatoview
+                              if fn.projname == proj
+                                if fn.funcgroup == "ACTION"
+                                  li(id='ActionMenu_'+fn.funcname)
+                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                        li.has-sub
+                          a(href='#') VERIFY
+                          ul
+                            each fn in datatoview
+                              if fn.projname == proj
+                                if fn.funcgroup == "VERIFY"
+                                  li(id='ActionMenu_'+fn.funcname)
+                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+                        li.has-sub
+                          a(href='#') UTILITY
+                          ul
+                            each fn in datatoview
+                              if fn.projname == proj
+                                if fn.funcgroup == "UTILITY"
+                                  li(id='ActionMenu_'+fn.funcname)
+                                  a(id='ActionMenuLink_'+fn.funcname)(href='/FnView/#{fn.funcname}') #{fn.funcname}
+              li
+                a(href='#') About
+              li.last
+                a(href='#') Contact
+              
+      block HFTemplete_body_1
+      
+      // footer
+      tr
+        td(colspan='2')
+          center
+            img(src='../images/footer.jpg', width='1010', height='100')
