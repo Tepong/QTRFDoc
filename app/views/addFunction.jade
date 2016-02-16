@@ -20,9 +20,9 @@ block HFTemplete_body_1
       tr
         td Project Name
         td
-          select       
+          select(name='projname')       
              each pn in allProj
-                option #{pn}
+                option(value='#{pn}') #{pn}
       tr
         td Function Name
         td
@@ -39,8 +39,6 @@ block HFTemplete_body_1
             option(value='ACTION') ACTION
             option(value='VERIFY') VERIFY
             option(value='UTILITY') UTILITY
-
-    input(id='hiddenPj',type='hidden',name='projname',value='SUPERSCREEN')
     input(id='btnAddParameter', type='button', value='Add Parameter', onclick="addRow('tb2')")
     input(id='btnDeleteRow', type='button', value='Delete Row', onclick="deleteRow('tb2')")
     table#tb2(align='center')
